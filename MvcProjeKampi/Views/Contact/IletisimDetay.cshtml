@@ -1,0 +1,63 @@
+﻿@model EntityLayer.Concrete.Contact
+@{
+    ViewBag.Title = "IletisimDetay";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>İletişim Mesajları</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        @Html.Action("MesajKlasorPartial", "Contact")
+        <div class="col-md-9">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">Mesaj Detayları</h3>
+                    <div class="card-tools">
+                        <a href="#" class="btn btn-tool" title="Previous"><i class="fas fa-chevron-left"></i></a>
+                        <a href="#" class="btn btn-tool" title="Next"><i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <div class="mailbox-read-info">
+                        <h5>Konu : @Html.DisplayFor(x => x.Subject)</h5>
+                        <h6>
+                            Kimden : @Html.DisplayFor(x => x.UserName) (@Html.DisplayFor(x => x.UserMail))
+                            <span class="mailbox-read-time float-right">@Html.DisplayFor(x => x.MessageDate)</span>
+                        </h6>
+                    </div>
+                    <!-- /.mailbox-read-info -->
+                    <div class="mailbox-read-message">
+                        <p>@Html.DisplayFor(x => x.Message)</p>
+                    </div>
+                    <!-- /.mailbox-read-message -->
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <div class="float-right">
+                        <button type="button" class="btn btn-default"><i class="fas fa-reply"></i> Yanıtla</button>
+                        <button type="button" class="btn btn-default"><i class="fas fa-share"></i> İlet</button>
+                    </div>
+                    <button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Sil</button>
+                    <button type="button" class="btn btn-default"><i class="fas fa-print"></i> Yazdır</button>
+                </div>
+                <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

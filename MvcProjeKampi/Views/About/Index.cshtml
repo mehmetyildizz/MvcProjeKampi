@@ -1,0 +1,84 @@
+﻿@using EntityLayer.Concrete
+@model List<About>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Hakkımızda</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Hakkımızda Listesi</h3>
+                        <a class="btn bg-gradient-secondary btn-sm float-right" data-toggle="modal" data-target="#ModalHakEkle">Yeni Hakkımızda Ekle</a>
+                        @*<a class="btn bg-gradient-secondary btn-sm float-right" data-toggle="modal" data-target="#ModalHakEkle2">Yeni Hakkımızda Ekle2</a>*@
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Hakkımda Metin 1</th>
+                                    <th>Hakkımda Metin 2</th>
+                                    <th>Hakkımda Resim 1</th>
+                                    <th>Hakkımda Resim 2</th>
+                                    <th>Durum</th>
+                                    <th>Sil</th>
+                                    <th>Güncelle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.AboutID</td>
+                                        <td>@item.AboutDetails1</td>
+                                        <td>@item.AboutDetails2</td>
+                                        <td>@item.AboutImage1</td>
+                                        <td>@item.AboutImage2</td>
+                                        <td>@item.AboutStatus</td>
+                                        <td><a href="/About/AboutSil/@item.AboutID" class="btn btn-danger btn-sm">Sil</a></td>
+                                        <td><a href="/About/AboutDuzenle/@item.AboutID" class="btn btn-warning btn-sm">Güncelle</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                            @*<tfoot>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Kategori Adı</th>
+                                        <th>Açıklama</th>
+                                        <th>Aktiflik</th>
+                                        <th>Sil</th>
+                                        <th>Güncelle</th>
+                                        <th>Başlıklar</th>
+                                    </tr>
+                                </tfoot>*@
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    @Html.Action("HakkindaPartial", "About")
+</section>
+<!-- /.content -->
