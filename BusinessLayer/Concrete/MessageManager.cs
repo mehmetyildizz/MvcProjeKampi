@@ -20,12 +20,12 @@ namespace BusinessLayer.Concrete
 
         public List<Message> MesajListeGetirGelen()
         {
-            return _messageDal.Listele(x => x.MessageReciever == "admin@yandex.com");
+            return _messageDal.Listele(x=>x.MessageStatusReceiver== false && x.MessageReciever == "admin@yandex.com" && x.MessageStatusDraft == false);
         }
 
         public List<Message> MesajListeGetirGiden()
         {
-            return _messageDal.Listele(x => x.MessageSender == "admin@yandex.com");
+            return _messageDal.Listele(x => x.MessageStatusSender == false && x.MessageSender == "admin@yandex.com" && x.MessageStatusDraft == false);
         }
 
         public void MesajEkle(Message message)

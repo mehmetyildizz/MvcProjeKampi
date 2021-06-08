@@ -1,4 +1,4 @@
-﻿
+﻿@model EntityLayer.Concrete.Message
 @{
     ViewBag.Title = "YeniMesajGonder";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -25,34 +25,39 @@
                     <h3 class="card-title">Yeni Mesaj Oluştur</h3>
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body">
-                    <div class="form-group">
-                        @Html.TextBoxFor()
-                        <input class="form-control" placeholder="Kime:">
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" placeholder="Konu:">
-                    </div>
-                    <div class="form-group">
-                        <textarea id="compose-textarea" class="form-control" style="height: 300px"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <div class="btn btn-default btn-file">
-                            <i class="fas fa-paperclip"></i> Dosya Ekle
-                            <input type="file" name="attachment">
+                @using (Html.BeginForm("YeniMesajGonder", "Message", FormMethod.Post, new { @id = "quickForm" }))
+                {
+                    <div class="card-body">
+                        <div class="form-group">
+                            @Html.TextBoxFor(x => x.MessageReciever, new { @placeholder = "Alıcı Mail Adresi Giriniz", @class = "form-control", @id = "MessageRecieverInput" })
+                            @Html.ValidationMessageFor(x => x.MessageReciever, string.Empty, new { @class = "error invalid-feedback d-block", @id = "MessageRecieverInput-error" })
                         </div>
-                        <p class="help-block">Max. 32MB</p>
+                        <div class="form-group">
+                            @Html.TextBoxFor(x => x.MessageSubject, new { @placeholder = "Mesaj Konusu Giriniz", @class = "form-control", @id = "MessageSubjectInput" })
+                            @Html.ValidationMessageFor(x => x.MessageSubject, string.Empty, new { @class = "error invalid-feedback d-block", @id = "MessageSubjectInput-error" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextAreaFor(x => x.MessageContent, new { @placeholder = "Mesaj İçeriği Giriniz", @class = "form-control", @id = "MessageContentInput", @style = "height: 300px" })
+                            @Html.ValidationMessageFor(x => x.MessageContent, string.Empty, new { @class = "error invalid-feedback d-block", @id = "MessageContentInput-error" })
+                        </div>
+                        <div class="form-group">
+                            <div class="btn btn-default btn-file">
+                                <i class="fas fa-paperclip"></i> Dosya Ekle
+                                <input type="file" name="DosyaEkle">
+                            </div>
+                            <p class="help-block">En Fazla 32MB</p>
+                        </div>
                     </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                    <div class="float-right">
-                        <button type="button" class="btn btn-default"><i class="fas fa-pencil-alt"></i> Taslak</button>
-                        <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i> Gönder</button>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="float-right">
+                            <button type="button" class="btn btn-default"><i class="fas fa-pencil-alt"></i> Taslak</button>
+                            <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i> Gönder</button>
+                        </div>
+                        <button type="reset" class="btn btn-default"><i class="fas fa-times"></i> İptal</button>
                     </div>
-                    <button type="reset" class="btn btn-default"><i class="fas fa-times"></i> İptal</button>
-                </div>
-                <!-- /.card-footer -->
+                    <!-- /.card-footer -->
+                }
             </div>
             <!-- /.card -->
         </div>

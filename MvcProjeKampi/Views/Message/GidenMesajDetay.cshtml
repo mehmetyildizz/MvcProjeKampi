@@ -38,8 +38,8 @@
                         </h6>
                     </div>
                     <!-- /.mailbox-read-info -->
-                    <div class="mailbox-read-message">
-                        <p>@Html.DisplayFor(x => x.MessageContent)</p>
+                    <div class="mailbox-read-message" data-html="true">
+                        <p>@Html.Raw(Model.MessageContent)</p>
                     </div>
                     <!-- /.mailbox-read-message -->
                 </div>

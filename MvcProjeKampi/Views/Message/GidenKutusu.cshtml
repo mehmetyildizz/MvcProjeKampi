@@ -1,9 +1,10 @@
 ﻿@using EntityLayer.Concrete
+@using System.Text.RegularExpressions;
 @model List<Message>
 @{
     ViewBag.Title = "GidenKutusu";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    int Uznlk = 30;
+    int Uznlk = 32;
 }
 
 <!-- Content Header (Page header) -->
@@ -85,15 +86,14 @@
                                                 <label for="check1"></label>
                                             </div>
                                         </td>
-                                        <td class="mailbox-star"><a href="/Message/GidenMesajDetay/@item.MessageID"><i class="fas fa-star text-warning"></i></a></td>
+                                        <td class="mailbox-star"><a href="/Message/GidenMesajDetay/@item.MessageID"><i class="far fa-trash-alt"></i></a></td>
                                         <td class="mailbox-name"><a href="/Message/GidenMesajDetay/@item.MessageID">@item.MessageReciever</a></td>
                                         <td class="mailbox-subject">
-                                            <b>@item.MessageSubject</b> -
-                                            @if (item.MessageContent.Length < Uznlk)
+                                            @if (Regex.Replace(Regex.Replace(item.MessageSubject + " - " + item.MessageContent, "&nbsp;", " "), "<[^>]+>|&nbsp;", String.Empty).Length < Uznlk)
                                             {
-                                                Uznlk = item.MessageContent.Length;
+                                                Uznlk = Regex.Replace(Regex.Replace(item.MessageSubject + " - " + item.MessageContent, "&nbsp;", " "), "<[^>]+>|&nbsp;", String.Empty).Length;
                                             }
-                                            @item.MessageContent.Substring(0, Uznlk)...
+                                            @Regex.Replace(Regex.Replace(item.MessageSubject + " - " + item.MessageContent, "&nbsp;", " "), "<[^>]+>|&nbsp;", String.Empty).Substring(0, Uznlk)...
                                         </td>
                                         <td class="mailbox-attachment"></td>
                                         <td class="mailbox-date">

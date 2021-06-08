@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -23,10 +24,16 @@ namespace EntityLayer.Concrete
 
         public string MessageContent { get; set; }
 
+        [DefaultValue("getdate()")]
         public DateTime MessageDate { get; set; }
 
-        public bool MessageStatusSerder { get; set; }
+        [DefaultValue(false)]
+        public bool MessageStatusSender { get; set; }
 
-        public bool MessageStatusReciver { get; set; }
+        [DefaultValue(false)]
+        public bool MessageStatusReceiver { get; set; }
+
+        [DefaultValue(false)]
+        public bool MessageStatusDraft{ get; set; }
     }
 }
