@@ -86,7 +86,7 @@
                                                 <label for="check1"></label>
                                             </div>
                                         </td>
-                                        <td class="mailbox-star"><a href="/Message/GelenMesajDetay/@item.MessageID"><i class="far fa-trash-alt"></i></a></td>
+                                        <td class="mailbox-star"><a href="/Message/GelenMesajSil/@item.MessageID"><i class="far fa-trash-alt"></i></a></td>
                                         <td class="mailbox-name"><a href="/Message/GelenMesajDetay/@item.MessageID">@item.MessageSender</a></td>
                                         <td class="mailbox-subject">
                                             @if (Regex.Replace(Regex.Replace(item.MessageSubject + " - " + item.MessageContent, "&nbsp;", " "), "<[^>]+>|&nbsp;", String.Empty).Length < Uznlk)

@@ -2,7 +2,7 @@
 @using System.Text.RegularExpressions;
 @model List<Message>
 @{
-    ViewBag.Title = "GidenKutusu";
+    ViewBag.Title = "SilinenMesajlar";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     int Uznlk = 32;
 }
@@ -12,7 +12,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Giden Kutusu</h1>
+                <h1>Silinen Mesajlar</h1>
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -25,7 +25,7 @@
         <div class="col-md-9">
             <div class="card card-primary card-outline">
                 <div class="card-header">
-                    <h3 class="card-title">Giden Kutusu</h3>
+                    <h3 class="card-title">Silinen Mesajlar</h3>
                     <div class="card-tools">
                         <div class="input-group input-group-sm">
                             <input type="text" class="form-control" placeholder="Mail Ara">
@@ -86,7 +86,7 @@
                                                 <label for="check1"></label>
                                             </div>
                                         </td>
-                                        <td class="mailbox-star"><a href="/Message/GidenMesajSil/@item.MessageID"><i class="far fa-trash-alt"></i></a></td>
+                                        @*<td class="mailbox-star"><a href="/Message/GidenMesajSil/@item.MessageID"><i class="far fa-trash-alt"></i></a></td>*@
                                         <td class="mailbox-name"><a href="/Message/GidenMesajDetay/@item.MessageID">@item.MessageReciever</a></td>
                                         <td class="mailbox-subject">
                                             @if (Regex.Replace(Regex.Replace(item.MessageSubject + " - " + item.MessageContent, "&nbsp;", " "), "<[^>]+>|&nbsp;", String.Empty).Length < Uznlk)

@@ -28,6 +28,16 @@ namespace BusinessLayer.Concrete
             return _messageDal.Listele(x => x.MessageStatusSender == false && x.MessageSender == "admin@yandex.com" && x.MessageStatusDraft == false);
         }
 
+        public List<Message> MesajListeGetirSilinen()
+        {
+            return _messageDal.Listele(x => x.MessageStatusSender == true || x.MessageStatusReceiver == true);
+        }
+
+        public List<Message> MesajListeGetirTaslak()
+        {
+            return _messageDal.Listele(x => x.MessageStatusDraft == true);
+        }
+
         public void MesajEkle(Message message)
         {
             _messageDal.Ekle(message);
@@ -35,7 +45,7 @@ namespace BusinessLayer.Concrete
 
         public void MesajGuncelle(Message message)
         {
-            throw new NotImplementedException();
+            _messageDal.Guncelle(message);
         }
 
         public Message MesajIDGetir(int id)
@@ -45,7 +55,7 @@ namespace BusinessLayer.Concrete
 
         public void MesajSil(Message message)
         {
-            throw new NotImplementedException();
+            _messageDal.Guncelle(message);
         }
 
     }

@@ -21,10 +21,22 @@ namespace MvcProjeKampi.Controllers
             var mesajlistesi = mm.MesajListeGetirGelen();
             return View(mesajlistesi);
         }
-
+        
         public ActionResult GidenKutusu()
         {
             var mesajlistesi = mm.MesajListeGetirGiden();
+            return View(mesajlistesi);
+        }
+
+        public ActionResult SilinenMesajlar()
+        {
+            var mesajlistesi = mm.MesajListeGetirSilinen();
+            return View(mesajlistesi);
+        }
+
+        public ActionResult TaslakMesajlar()
+        {
+            var mesajlistesi = mm.MesajListeGetirTaslak();
             return View(mesajlistesi);
         }
 
