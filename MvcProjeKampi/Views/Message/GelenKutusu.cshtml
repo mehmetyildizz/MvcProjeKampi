@@ -4,7 +4,6 @@
 @{
     ViewBag.Title = "GelenKutusu";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    int Uznlk = 32;
 }
 
 <!-- Content Header (Page header) -->
@@ -79,6 +78,7 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
+                                    int Uznlk = 32;
                                     <tr>
                                         <td>
                                             <div class="icheck-primary">

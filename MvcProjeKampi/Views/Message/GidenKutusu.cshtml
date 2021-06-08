@@ -4,7 +4,6 @@
 @{
     ViewBag.Title = "GidenKutusu";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    int Uznlk = 32;
 }
 
 <!-- Content Header (Page header) -->
@@ -79,6 +78,7 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
+                                    int Uznlk = 32;
                                     <tr>
                                         <td>
                                             <div class="icheck-primary">
@@ -97,21 +97,7 @@
                                         </td>
                                         <td class="mailbox-attachment"></td>
                                         <td class="mailbox-date">
-                                            @{
-                                                TimeSpan? Difference = DateTime.Now - item.MessageDate;
-                                            }
-                                            @if (@Difference.Value.Days > 0)
-                                            {
-                                                <span>@Difference.Value.Days gün, @Difference.Value.Hours saat, @Difference.Value.Minutes dakiaka önce</span>
-                                            }
-                                            else if (@Difference.Value.Hours > 0)
-                                            {
-                                                <span>@Difference.Value.Hours saat, @Difference.Value.Minutes dakiaka önce</span>
-                                            }
-                                            else if (@Difference.Value.Minutes > 0)
-                                            {
-                                                <span>@Difference.Value.Minutes dakiaka önce</span>
-                                            }
+                                            @(((DateTime)item.MessageDate).ToString("dd-MMM-yyyy HH:mm")
                                         </td>
                                     </tr>
                                 }
