@@ -78,6 +78,10 @@
     <Compile Include="Migrations\202106091623354_asdf.designer.cs">
       <DependentUpon>202106091623354_asdf.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106091927132_adfgf.cs" />
+    <Compile Include="Migrations\202106091927132_adfgf.designer.cs">
+      <DependentUpon>202106091927132_adfgf.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -97,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106091623354_asdf.resx">
       <DependentUpon>202106091623354_asdf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106091927132_adfgf.resx">
+      <DependentUpon>202106091927132_adfgf.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

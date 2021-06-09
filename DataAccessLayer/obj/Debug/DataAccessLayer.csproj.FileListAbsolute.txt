@@ -95,3 +95,4 @@ D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
 D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations._as.resources
 D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.GenerateResource.cache
 D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.asdf.resources
+D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.adfgf.resources
