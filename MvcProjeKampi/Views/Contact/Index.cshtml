@@ -73,7 +73,26 @@
                         <!-- /.float-right -->
                     </div>
                     <div class="table-responsive mailbox-messages">
-                        <table class="table table-hover table-striped">
+                        <table id="example2" class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        #
+                                    </th>
+                                    <th>
+                                        #
+                                    </th>
+                                    <th>
+                                        Kime
+                                    </th>
+                                    <th>
+                                        Konu - Mesaj
+                                    </th>
+                                    <th>
+                                        Tarih
+                                    </th>
+                                </tr>
+                            </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
@@ -89,7 +108,6 @@
                                         <td class="mailbox-subject">
                                             <b>@item.Subject</b> - @item.Message.Substring(0, 30)...
                                         </td>
-                                        <td class="mailbox-attachment"></td>
                                         <td class="mailbox-date">
                                             @{
 
