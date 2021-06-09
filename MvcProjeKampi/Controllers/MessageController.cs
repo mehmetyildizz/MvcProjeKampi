@@ -17,12 +17,14 @@ namespace MvcProjeKampi.Controllers
         MessageManager mm = new MessageManager(new EfMessageDal());
         MessageValidator messageValidator = new MessageValidator();
 
+        [Authorize]
         public ActionResult GelenKutusu()
         {
             var mesajlistesi = mm.MesajListeGetirGelen();
             return View(mesajlistesi);
         }
 
+        [Authorize]
         public ActionResult GidenKutusu()
         {
             var mesajlistesi = mm.MesajListeGetirGiden();
