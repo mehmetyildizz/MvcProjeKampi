@@ -23,5 +23,7 @@ namespace DataAccessLayer.Concrete
         public DbSet<Content> Contents { get; set; }
 
         public DbSet<Message> Messages { get; set; }
+
+        public DbSet<ImageFile> ImageFiles { get; set; }
     }
 }
