@@ -34,9 +34,13 @@ namespace MvcProjeKampi.Controllers
         {
             var IletisimMesajSayiyisi = context.Contacts.Count().ToString();
             ViewBag.mesajsayisiIletisim = IletisimMesajSayiyisi;
+            var IletisimMesajYeni = context.Contacts.Count(x => x.ContactStatusRead == false).ToString();
+            ViewBag.yenimesajIletisim = IletisimMesajYeni;
 
             var GelenMesajSayisi = context.Messages.Count(x => x.MessageReciever == "admin@yandex.com" && x.MessageStatusReceiver == false).ToString();
             ViewBag.mesajsayisiGelen = GelenMesajSayisi;
+            var GelenMesajYeni = context.Messages.Count(x => x.MessageReciever == "admin@yandex.com" && x.MessageStatusReceiver == false && x.MessageStatusRead == false).ToString();
+            ViewBag.yenimesajGelen = GelenMesajYeni;
 
             var GidenMesajSayisi = context.Messages.Count(x => x.MessageSender == "admin@yandex.com" && x.MessageStatusSender == false).ToString();
             ViewBag.mesajsayisiGiden = GidenMesajSayisi;
@@ -46,6 +50,8 @@ namespace MvcProjeKampi.Controllers
 
             var SilinenMesajSayisi = context.Messages.Count(x => x.MessageStatusReceiver == true || x.MessageStatusSender == true).ToString();
             ViewBag.mesajsayisiSilinen = SilinenMesajSayisi;
+            var SilinenMesajYeni = context.Messages.Count(x => (x.MessageStatusReceiver == true || x.MessageStatusSender == true) && x.MessageStatusRead == false).ToString();
+            ViewBag.yenimesajSilinen = SilinenMesajYeni;
 
             return PartialView();
         }

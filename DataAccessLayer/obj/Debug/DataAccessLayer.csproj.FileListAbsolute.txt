@@ -97,3 +97,4 @@ D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.lkjg.r
 D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.GenerateResource.cache
 E:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.lkjg.resources
 E:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations._654.resources
+D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations._654.resources

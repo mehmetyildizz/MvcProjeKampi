@@ -33,29 +33,10 @@ namespace MvcProjeKampi.Controllers
             {
                 var crypto = new SimpleCrypto.PBKDF2();
                 var adminuserinfo = am.AdminListeGetir().Where(x => x.AdminUserName == crypto.Compute(p.AdminUserName, x.AdminPasswordSalt) && x.AdminPassword == crypto.Compute(p.AdminPassword, x.AdminPasswordSalt)).FirstOrDefault();
-                //var adminuserinfo = am.AdminListeGetir().Where(x => x.AdminUserName == p.AdminUserName).FirstOrDefault();
                 if (adminuserinfo != null)
                 {
-                    //if (adminuserinfo.AdminPassword == crypto.Compute(p.AdminPassword, adminuserinfo.AdminPasswordSalt))
-                    //{
-                    //    FormsAuthentication.SetAuthCookie(adminuserinfo.AdminUserName, false);
-                    //    Session["AdminUserName"] = adminuserinfo.AdminUserName;
-                    //    Session["AdminUserRole"] = adminuserinfo.AdminRole;
-                    //    Session["AdminName"] = adminuserinfo.AdminName;
-                    //    Session["AdminSurname"] = adminuserinfo.AdminSurname;
-
-                    //    if (!string.IsNullOrEmpty(ReturnUrl))
-                    //    {
-                    //        return Redirect(ReturnUrl);
-                    //    }
-                    //    else
-                    //    {
-                    //        return RedirectToAction("Index", "Istatistik");
-                    //    }
-                    //}
-
                     FormsAuthentication.SetAuthCookie(adminuserinfo.AdminUserName, false);
-                    Session["AdminUserName"] = adminuserinfo.AdminUserName;
+                    Session["AdminUserName"] = p.AdminUserName; // tekrar bakılacak, veritabanından hash den dönüştürülerek denenecek
                     Session["AdminUserRole"] = adminuserinfo.AdminRole;
                     Session["AdminName"] = adminuserinfo.AdminName;
                     Session["AdminSurname"] = adminuserinfo.AdminSurname;

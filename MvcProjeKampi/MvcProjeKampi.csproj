@@ -2208,6 +2208,16 @@
     <Content Include="AdminLTE-3.1.0\plugins\uplot\uPlot.iife.js" />
     <Content Include="AdminLTE-3.1.0\plugins\uplot\uPlot.iife.min.js" />
     <Content Include="AdminLTE-3.1.0\plugins\uplot\uPlot.min.css" />
+    <Content Include="AdminLTE-3.1.0\skills_profile_widget\css\style.css" />
+    <Content Include="AdminLTE-3.1.0\skills_profile_widget\images\5.jpg" />
+    <Content Include="AdminLTE-3.1.0\skills_profile_widget\images\img1.jpg" />
+    <Content Include="AdminLTE-3.1.0\skills_profile_widget\images\sprite.png" />
+    <Content Include="AdminLTE-3.1.0\skills_profile_widget\index.html" />
+    <Content Include="AdminLTE-3.1.0\skills_profile_widget\js\bars.js" />
+    <Content Include="AdminLTE-3.1.0\skills_profile_widget\js\easyResponsiveTabs.js" />
+    <Content Include="AdminLTE-3.1.0\skills_profile_widget\js\jquery-1.11.1.min.js" />
+    <Content Include="AdminLTE-3.1.0\skills_profile_widget\js\jquery.circlechart.js" />
+    <Content Include="AdminLTE-3.1.0\skills_profile_widget\w3layouts-License.txt" />
     <Content Include="AdminLTE-3.1.0\starter.html" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />

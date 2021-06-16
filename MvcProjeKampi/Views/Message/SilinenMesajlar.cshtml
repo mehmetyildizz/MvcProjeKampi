@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "SilinenMesajlar";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var stylebold = "";
 }
 
 <!-- Content Header (Page header) -->
@@ -47,7 +48,9 @@
                                 @foreach (var item in Model)
                                 {
                                     int Uznlk = 32;
-                                    <tr>
+                                    stylebold = "";
+                                    if (item.MessageStatusRead == false){stylebold = "font-weight:bold";}
+                                    <tr style="@stylebold">
                                         @*<td class="mailbox-star"><a href="/Message/GidenMesajSil/@item.MessageID"><i class="far fa-trash-alt"></i></a></td>*@
                                         <td class="mailbox-name"><a href="/Message/GidenMesajDetay/@item.MessageID">@item.MessageReciever</a></td>
                                         <td class="mailbox-subject">

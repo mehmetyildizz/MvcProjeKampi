@@ -1,8 +1,10 @@
 ﻿@using EntityLayer.Concrete
+@using System.Text.RegularExpressions;
 @model List<Contact>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var stylebold = "";
 }
 
 <!-- Content Header (Page header) -->
@@ -48,11 +50,19 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr>
+                                    int Uznlk = 32;
+                                    stylebold = "";
+                                    if (item.ContactStatusRead == false) { stylebold = "font-weight:bold"; }
+                                    <tr style="@stylebold">
                                         <td class="mailbox-star"><a href="/Contact/IletisimDetay/@item.ContactID"><i class="far fa-trash-alt"></i></a></td>
                                         <td class="mailbox-name"><a href="/Contact/IletisimDetay/@item.ContactID">@item.UserName</a></td>
                                         <td class="mailbox-subject">
-                                            <b>@item.Subject</b> - @item.Message.Substring(0, 30)...
+                                            @if (Regex.Replace(Regex.Replace(item.Subject + " - " + item.Message, "&nbsp;", " "), "<[^>]+>|&nbsp;", String.Empty).Length < Uznlk)
+                                            {
+                                                Uznlk = Regex.Replace(Regex.Replace(item.Subject + " - " + item.Message, "&nbsp;", " "), "<[^>]+>|&nbsp;", String.Empty).Length;
+                                            }
+                                            @Regex.Replace(Regex.Replace(item.Subject + " - " + item.Message, "&nbsp;", " "), "<[^>]+>|&nbsp;", String.Empty).Substring(0, Uznlk)...
+                                            @*<b>@item.Subject</b> - @item.Message.Substring(0, 30)...*@
                                         </td>
                                         <td class="mailbox-date">
                                             @{
