@@ -40,7 +40,7 @@ namespace BusinessLayer.Concrete
 
         public void HakkindaSil(About about)
         {
-            _aboutDal.Sil(about);
+            _aboutDal.Guncelle(about);
         }
     }
 }

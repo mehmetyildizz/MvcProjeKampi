@@ -17,14 +17,14 @@ namespace MvcProjeKampi.Controllers
         MessageManager mm = new MessageManager(new EfMessageDal());
         MessageValidator messageValidator = new MessageValidator();
 
-        [Authorize]
+        [Authorize(Roles = "A")]
         public ActionResult GelenKutusu()
         {
             var mesajlistesi = mm.MesajListeGetirGelen();
             return View(mesajlistesi);
         }
 
-        [Authorize]
+        [Authorize(Roles = "A")]
         public ActionResult GidenKutusu()
         {
             var mesajlistesi = mm.MesajListeGetirGiden();
@@ -84,36 +84,19 @@ namespace MvcProjeKampi.Controllers
             return RedirectToAction("TaslakMesajlar");
         }
 
-
-        //public ActionResult YeniMesajGonder(Message p)
-        //{
-        //    ValidationResult results = messageValidator.Validate(p);
-        //    if (results.IsValid)
-        //    {
-        //        p.MessageSender = "admin@yandex.com";
-        //        p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-        //        mm.MesajEkle(p);
-        //        return RedirectToAction("GidenKutusu");
-        //    }
-        //    else
-        //    {
-        //        foreach (var item in results.Errors)
-        //        {
-        //            ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-        //        }
-        //    }
-        //    return View();
-        //}
-
         public ActionResult GelenMesajDetay(int id)
         {
             var GelenMesajDetay = mm.MesajIDGetir(id);
+            GelenMesajDetay.MessageStatusRead = true;
+            mm.MesajGuncelle(GelenMesajDetay);
             return View(GelenMesajDetay);
         }
 
         public ActionResult GidenMesajDetay(int id)
         {
             var GidenMesajDetay = mm.MesajIDGetir(id);
+            GidenMesajDetay.MessageStatusRead = true;
+            mm.MesajGuncelle(GidenMesajDetay);
             return View(GidenMesajDetay);
         }
 

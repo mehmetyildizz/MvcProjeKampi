@@ -38,9 +38,14 @@ namespace BusinessLayer.Concrete
             return _adminDal.Listele();
         }
 
-        public List<Admin> AdminGetir(Admin admin)
+        public Admin AdminGetir(string username, string password)
         {
-            return _adminDal.Listele(x => x.AdminUserName == admin.AdminUserName && x.AdminPassword == admin.AdminPassword);
+            return _adminDal.AlGetir(x => x.AdminUserName == username && x.AdminPassword == password);
+        }
+
+        public Admin AdminUserGetir(string username)
+        {
+            return _adminDal.AlGetir(x => x.AdminUserName == username);
         }
 
         public void AdminSil(Admin admin)

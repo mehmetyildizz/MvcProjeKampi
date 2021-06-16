@@ -1,0 +1,100 @@
+﻿@using EntityLayer.Concrete
+@model List<Admin>
+@{
+    ViewBag.Title = "AdminListe";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Admin Listesi</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Admin Listesi</h3>
+                        <a href="/Login/AdminEkle" class="btn bg-gradient-secondary btn-sm float-right">Yeni Admin Ekle</a>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body" style="padding-right: 0rem; padding-left: 0rem">
+                        <table id="example1" class="table table-striped projects">
+                            <thead>
+                                <tr>
+                                    <th style="width: 1%">
+                                        #
+                                    </th>
+                                    <th style="width: 25%">
+                                        Admin Kullanıcı Adı
+                                    </th>
+                                    <th style="width: 25%">
+                                        Admin Şifre
+                                    </th>
+                                    <th style="width: 10%" class="text-center">
+                                        Admin Adı Soyadı
+                                    </th>
+                                    <th style="width: 10%" class="text-center">
+                                        Admin Rol
+                                    </th>
+                                    <th style="width: 10%" class="text-center">
+                                        Admin Şifre Salt
+                                    </th>
+                                    <th style="width: 19%">
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>
+                                        @item.AdminID
+                                    </td>
+                                    <td>
+                                        @item.AdminUserName
+                                    </td>
+                                    <td>
+                                        @item.AdminPassword
+                                    </td>
+                                    <td>
+                                        @item.AdminName @item.AdminSurname
+                                    </td>
+                                    <td>
+                                        @item.AdminRole
+                                    </td>
+                                    <td>
+                                        @item.AdminPasswordSalt
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <a class="btn btn-info btn-sm" href="/Login/AdminGuncelle/@item.AdminID">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            Düzenle
+                                        </a>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

@@ -47,6 +47,17 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Notifications Dropdown Menu -->
+                <li class="nav-item d-none d-sm-inline-block">
+                    @if (!string.IsNullOrEmpty(Session["AdminUserName"] as string))
+                    {
+                        <a href="/Login/Logout" class="nav-link">@Session["AdminUserName"] - @Session["AdminUserRole"] - Çıkış Yap</a>
+                    }
+                    else
+                    {
+                        <a href="/Login/Index" class="nav-link">Giriş Yap</a>
+                    }
+
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
@@ -71,7 +82,14 @@
                         <img src="~/AdminLTE-3.1.0/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Mehmet YILDIZ</a>
+                        @if (!string.IsNullOrEmpty(Session["AdminUserName"] as string))
+                        {
+                            <a href="#" class="d-block">@Session["AdminName"] @Html.Raw(" ") @Session["AdminSurname"]</a>
+                        }
+                        else
+                        {
+                            <a href="/Login/Index" class="d-block">Giriş Yap</a>
+                        }
                     </div>
                 </div>
 
@@ -90,16 +108,18 @@
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <a href="/Category/Index" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Kategoriler
-                                </p>
-                            </a>
-                        </li>
+                        <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+                        @if (User.IsInRole("B"))
+                        {
+                            <li class="nav-item">
+                                <a href="/Category/Index" class="nav-link">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        Kategoriler
+                                    </p>
+                                </a>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a href="/Heading/Index" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
@@ -117,10 +137,26 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
+                            <a href="/Contact/Index" class="nav-link">
+                                <i class="nav-icon far fa-envelope"></i>
                                 <p>
-                                    Yazılar
+                                    İletişim & Mesajlar
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Yetkilendirme
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Gallery/Index" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Resim Galerisi
                                 </p>
                             </a>
                         </li>
@@ -152,22 +188,6 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    Yetkilendirme
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/Gallery/Index" class="nav-link">
-                                <i class="nav-icon far fa-image"></i>
-                                <p>
-                                    Resim Galerisi
-                                </p>
-                            </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -205,26 +225,18 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="~/AdminLTE-3.1.0/widgets.html" class="nav-link">
-                                <i class="nav-icon fas fa-forward"></i>
-                                <p>
-                                    Siteye Git
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/Contact/Index" class="nav-link">
-                                <i class="nav-icon far fa-envelope"></i>
-                                <p>
-                                    İletişim & Mesajlar
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="/About/Index" class="nav-link">
                                 <i class="nav-icon fas fa-address-card"></i>
                                 <p>
                                     Hakkında
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="~/AdminLTE-3.1.0/widgets.html" class="nav-link">
+                                <i class="nav-icon fas fa-forward"></i>
+                                <p>
+                                    Siteye Git
                                 </p>
                             </a>
                         </li>
@@ -301,9 +313,6 @@
 
     <!-- Summernote -->
     <script src="~/AdminLTE-3.1.0/plugins/summernote/summernote-bs4.min.js"></script>
-
-
-
 
     <!-- Page specific script -->
     <script>

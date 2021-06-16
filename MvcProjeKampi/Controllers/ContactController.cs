@@ -25,6 +25,8 @@ namespace MvcProjeKampi.Controllers
         public ActionResult IletisimDetay(int id)
         {
             var IletisimDetay = cm.IletisimIDGetir(id);
+            IletisimDetay.ContactStatusRead = true;
+            cm.IletisimGuncelle(IletisimDetay);
             return View(IletisimDetay);
         }
 

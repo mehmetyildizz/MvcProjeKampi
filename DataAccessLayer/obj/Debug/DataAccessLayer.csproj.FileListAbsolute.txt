@@ -92,7 +92,8 @@ D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompil
 D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CopyComplete
 D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.dll
 D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
-D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations._as.resources
+E:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.GenerateResource.cache
+D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.lkjg.resources
 D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.GenerateResource.cache
-D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.asdf.resources
-D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.adfgf.resources
+E:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.lkjg.resources
+E:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations._654.resources

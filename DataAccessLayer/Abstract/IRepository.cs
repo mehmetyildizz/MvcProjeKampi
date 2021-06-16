@@ -16,6 +16,7 @@ namespace DataAccessLayer.Abstract
         void Guncelle(T p);
 
         T AlGetir(Expression<Func<T, bool>> Filtre);
+        
         void Sil(T p);
 
         List<T> Listele(Expression<Func<T, bool>> Filtre);

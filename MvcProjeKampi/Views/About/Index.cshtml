@@ -1,9 +1,14 @@
 ﻿@using EntityLayer.Concrete
 @model List<About>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Hakkımda";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+@{
+    string color2 = "";
+    string color3 = "";
+    string status = "";
+    string butonstatus = "";}
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -38,8 +43,7 @@
                                     <th>Hakkımda Resim 1</th>
                                     <th>Hakkımda Resim 2</th>
                                     <th>Durum</th>
-                                    <th>Sil</th>
-                                    <th>Güncelle</th>
+                                    <th>Aktif-Pasif</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,9 +55,23 @@
                                         <td>@item.AboutDetails2</td>
                                         <td>@item.AboutImage1</td>
                                         <td>@item.AboutImage2</td>
-                                        <td>@item.AboutStatus</td>
-                                        <td><a href="/About/AboutSil/@item.AboutID" class="btn btn-danger btn-sm">Sil</a></td>
-                                        <td><a href="/About/AboutDuzenle/@item.AboutID" class="btn btn-warning btn-sm">Güncelle</a></td>
+
+                                        @if (item.AboutStatus == true)
+                                        {
+                                            status = "Aktif";
+                                            butonstatus = "Pasif Yap";
+                                            color2 = "badge badge-success";
+                                            color3 = "btn btn-danger";
+                                        }
+                                        else
+                                        {
+                                            status = "Pasif";
+                                            butonstatus = "Aktif Yap";
+                                            color2 = "badge badge-danger";
+                                            color3 = "btn btn-success";
+                                        }
+                                        <td><span class="@color2">@status</span></td>
+                                        <td><a href="/About/HakkindaSil/@item.AboutID" class="@color3 btn-sm"><i class="fas fa-trash"></i>@butonstatus</a></td>
                                     </tr>
                                 }
                             </tbody>

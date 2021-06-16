@@ -1,63 +1,92 @@
-﻿
+﻿@model EntityLayer.Concrete.Admin
 @{
     Layout = null;
 }
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Mvc Proje Kampı Admin Giriş</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/AdminLTE-3.1.0/login-form-19/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mvc Proje Kampı Admin Giriş</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/AdminLTE-3.1.0/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/AdminLTE-3.1.0/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/AdminLTE-3.1.0/dist/css/adminlte.min.css">
 </head>
-<body>
-    <section class="ftco-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6 text-center mb-5">
-                    <h2 class="heading-section">Mvc Proje Kampı Admin Giriş</h2>
-                </div>
+<body class="hold-transition dark-mode login-page">
+    <div class="login-box">
+        <!-- /.login-logo -->
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+                <a href="/Istatistik/Index" class="h1"><b>MVC</b> Proje Giriş</a>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-4">
-                    <div class="login-wrap py-5">
-                        <div class="img d-flex align-items-center justify-content-center" style="background-image: url(/AdminLTE-3.1.0/login-form-19/images/bg.jpg);"></div>
-                        <h3 class="text-center mb-0">Hoş Geldiniz</h3>
-                        <p class="text-center">Aşağıdaki bilgileri girerek oturum açın</p>
-                        @ViewBag.hata
-                        @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "login-form", @id = "quickForm" }))
-                        {
-                            <div class="form-group">
-                                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
-                                <input type="text" name="AdminUserName" class="form-control" placeholder="Kullanıcı Adı" required>
-                            </div>
-                            <div class="form-group">
-                                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-                                <input type="password" name="AdminPassword" class="form-control" placeholder="Şifre" required>
-                            </div>
-                            <div class="form-group d-md-flex">
-                                <div class="w-100 text-md-right">
-                                    <a href="#">Şifremi Unuttum</a>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn form-control btn-primary rounded submit px-3">Giriş Yap</button>
-                            </div>
-                        }
-                        <div class="w-100 text-center mt-4 text">
-                            <a href="#">Ana Sayfaya Dön</a>
-                        </div>
+            <div class="card-body">
+                <p class="login-box-msg">Oturumunuzu başlatmak için giriş yapın</p>
+                @if (TempData["HataMesaji1"] != null)
+                {
+                    <div>
+                        <p class="login-box-msg" style="color: #e91e63">@TempData["HataMesaji1"]<br />@TempData["HataMesaji2"]</p>
                     </div>
-                </div>
+                }
+                @using (Html.BeginForm("Index", "Login", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post, new { @class = "login-form", @id = "quickForm" }))
+                {
+                    <div class="input-group mb-3">
+                        @Html.TextBoxFor(x => x.AdminUserName, new { @type = "email", @name = "AdminUserName", @placeholder = "Kullanıcı Adı", @class = "form-control", @id = "KullaniciAdiInput" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(x => x.AdminUserName, string.Empty, new { @class = "error invalid-feedback d-block", @id = "KullaniciAdiInput-error" })
+                    </div>
+                    <div class="input-group mb-3">
+                        @Html.TextBoxFor(x => x.AdminPassword, new { @type = "password", @name = "AdminPassword", @placeholder = "Şifre", @class = "form-control", @id = "SifreInput" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(x => x.AdminPassword, string.Empty, new { @class = "error invalid-feedback d-block", @id = "SifreInput-error" })
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Beni Hatırla
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                }
+                <p class="mb-1">
+                    <a href="#">Şifremi Unuttum</a>
+                </p>
+                <p class="mb-0">
+                    <a href="#" class="text-center">Ana Sayfaya Dön</a>
+                </p>
             </div>
+            <!-- /.card-body -->
         </div>
-    </section>
-    <script src="~/AdminLTE-3.1.0/login-form-19/js/jquery.min.js"></script>
-    <script src="~/AdminLTE-3.1.0/login-form-19/js/popper.js"></script>
-    <script src="~/AdminLTE-3.1.0/login-form-19/js/bootstrap.min.js"></script>
-    <script src="~/AdminLTE-3.1.0/login-form-19/js/main.js"></script>
+        <!-- /.card -->
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js"></script>
 </body>
 </html>

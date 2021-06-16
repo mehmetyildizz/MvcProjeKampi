@@ -36,5 +36,20 @@ namespace MvcProjeKampi.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult HakkindaSil(int id)
+        {
+            var hakkindadeger = am.HakkindaIDGetir(id);
+            if (hakkindadeger.AboutStatus == false)
+            {
+                hakkindadeger.AboutStatus = true;
+            }
+            else
+            {
+                hakkindadeger.AboutStatus = false;
+            };
+            am.HakkindaSil(hakkindadeger);
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -11,7 +11,9 @@ namespace BusinessLayer.Abstract
     {
         List<Admin> AdminListeGetir();
         
-        List<Admin> AdminGetir(Admin admin);
+        Admin AdminGetir(string username, string password);
+        
+        Admin AdminUserGetir(string username);
 
         void AdminEkle(Admin admin);
 

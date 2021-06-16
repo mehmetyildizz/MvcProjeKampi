@@ -35,5 +35,8 @@ namespace EntityLayer.Concrete
 
         [DefaultValue(false)]
         public bool MessageStatusDraft{ get; set; }
+
+        [DefaultValue(false)]
+        public bool MessageStatusRead { get; set; }
     }
 }

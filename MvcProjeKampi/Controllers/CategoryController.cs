@@ -15,6 +15,8 @@ namespace MvcProjeKampi.Controllers
     {
         CategoryManager cm = new CategoryManager(new EfCategoryDal());
         CategoryValidator categoryValidator = new CategoryValidator();
+        
+        [Authorize(Roles="B")]
         public ActionResult Index()
         {
             var KategoriDegerler = cm.KategoriListeGetir();
