@@ -58,5 +58,10 @@ namespace BusinessLayer.Concrete
             _messageDal.Guncelle(message);
         }
 
+        public void MesajKaliciSil(Message message)
+        {
+            _messageDal.Sil(message);
+        }
+
     }
 }

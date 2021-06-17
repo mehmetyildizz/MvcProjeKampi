@@ -114,6 +114,14 @@ namespace MvcProjeKampi.Controllers
                                                       Value = x.CategoryID.ToString()
                                                   }).ToList();
             ViewBag.Ktgr = kategorideger;
+            
+            List<SelectListItem> yazardeger = (from x in wm.YazarListeGetir()
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.WriterName,
+                                                      Value = x.WriterID.ToString()
+                                                  }).ToList();
+            ViewBag.Yzr = yazardeger;
 
             var BaslikDegeri = hm.BaslikIDGetir(id);
             return View(BaslikDegeri);

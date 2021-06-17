@@ -12,7 +12,7 @@ namespace MvcProjeKampi.Controllers
     public class ContentController : Controller
     {
         ContentManager cm = new ContentManager(new EfContentDal());
-        WriterValidator writerValidator = new WriterValidator();
+        ContentValidator contentValidator = new ContentValidator();
 
         public ActionResult Index()
         {

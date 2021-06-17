@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -15,15 +16,13 @@ namespace EntityLayer.Concrete
         [StringLength(25)]
         public string TalentName { get; set; }
 
-        public byte TalentValue { get; set; }
+        public int TalentValue { get; set; }
 
-        [StringLength(25)]
-        public string AdminName { get; set; }
+        [DefaultValue(true)]
+        public bool TalentStatus { get; set; }
 
-        [StringLength(250)]
-        public string AdminPhoto { get; set; }
+        public int WriterID { get; set; }
 
-        [StringLength(250)]
-        public string AdminTitle { get; set; }
+        public virtual Writer Writer { get; set; }
     }
 }

@@ -5,6 +5,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     var stylebold = "";
+    var readornot = "";
 }
 
 <!-- Content Header (Page header) -->
@@ -37,6 +38,9 @@
                                         #
                                     </th>
                                     <th>
+                                        #
+                                    </th>
+                                    <th>
                                         Kime
                                     </th>
                                     <th>
@@ -52,9 +56,19 @@
                                 {
                                     int Uznlk = 32;
                                     stylebold = "";
-                                    if (item.ContactStatusRead == false) { stylebold = "font-weight:bold"; }
+                                    readornot = "";
+                                    if (item.ContactStatusRead == false)
+                                    {
+                                        stylebold = "font-weight:bold";
+                                        readornot = "far fa-envelope";
+                                    }
+                                    else
+                                    {
+                                        readornot = "far fa-envelope-open";
+                                    }
                                     <tr style="@stylebold">
-                                        <td class="mailbox-star"><a href="/Contact/IletisimDetay/@item.ContactID"><i class="far fa-trash-alt"></i></a></td>
+                                        <td class="mailbox-star"><a href="/Contact/IletisimSil/@item.ContactID"><i class="far fa-trash-alt"></i></a></td>
+                                        <td class="mailbox-star"><a href="/Contact/IletisimDetay/@item.ContactID"><i class="@readornot"></i></a></td>
                                         <td class="mailbox-name"><a href="/Contact/IletisimDetay/@item.ContactID">@item.UserName</a></td>
                                         <td class="mailbox-subject">
                                             @if (Regex.Replace(Regex.Replace(item.Subject + " - " + item.Message, "&nbsp;", " "), "<[^>]+>|&nbsp;", String.Empty).Length < Uznlk)

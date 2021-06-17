@@ -55,5 +55,13 @@ namespace MvcProjeKampi.Controllers
 
             return PartialView();
         }
+
+        public ActionResult IletisimSil(int id)
+        {
+            var iletisimdeger = cm.IletisimIDGetir(id);
+            iletisimdeger.ContactStatus = true;
+            cm.IletisimSil(iletisimdeger);
+            return RedirectToAction("GidenKutusu");
+        }
     }
 }

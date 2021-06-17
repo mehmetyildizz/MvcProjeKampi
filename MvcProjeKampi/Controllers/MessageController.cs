@@ -116,6 +116,13 @@ namespace MvcProjeKampi.Controllers
             return RedirectToAction("GelenKutusu");
         }
 
+        public ActionResult KaliciMesajSil(int id)
+        {
+            var mesajdeger = mm.MesajIDGetir(id);
+            mm.MesajKaliciSil(mesajdeger);
+            return RedirectToAction("SilinenMesajlar");
+        }
+
         [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
         public class MultipleButtonAttribute : ActionNameSelectorAttribute
         {

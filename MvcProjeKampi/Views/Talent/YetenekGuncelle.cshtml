@@ -1,0 +1,76 @@
+﻿@model EntityLayer.Concrete.Talent
+@{
+    ViewBag.Title = "YetenekGuncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Yetenekler</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Yetenek Güncelle</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    @using (Html.BeginForm("YetenekGuncelle", "Talent", FormMethod.Post, new { @id = "quickForm" }))
+                    {
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="YetenekIdInput">Yetenek Id</label>
+                                @Html.TextBoxFor(x => x.TalentID, new { @readonly = "readonly", @class = "form-control", @id = "YetenekIdInput" })
+                            </div>
+                            <div class="form-group">
+                                <label for="YetenekAdiInput">Yetenek Adı</label>
+                                @Html.TextBoxFor(x => x.TalentName, new { @placeholder = "Yetenek Adı Giriniz", @class = "form-control", @id = "YetenekAdiInput" })
+                                @Html.ValidationMessageFor(x => x.TalentName, string.Empty, new { @class = "error invalid-feedback d-block", @id = "YetenekAdiInput-error" })
+                            </div>
+                            <div class="form-group">
+                                <label for="YetenekSeviyeInput">Yetenek Seviyesi</label>
+                                @Html.TextBoxFor(x => x.TalentValue, new { @placeholder = "Yetenek Seviyesi Giriniz", @class = "form-control", @id = "YetenekSeviyeInput" })
+                                @Html.ValidationMessageFor(x => x.TalentValue, string.Empty, new { @class = "error invalid-feedback d-block", @id = "YetenekSeviyeInput-error" })
+                            </div>
+                            <div class="form-group">
+                                <label for="YazarAdiInput">Yazar Adı</label>
+                                @Html.DropDownListFor(x => x.WriterID, (List<SelectListItem>)ViewBag.Yzr, new { @class = "form-control", @id = "YazarAdiInput" })
+                                @*@Html.ValidationMessageFor(x => x.WriterID, string.Empty, new { @class = "error invalid-feedback d-block", @id = "YazarAdiInput-error" })*@
+                            </div>
+                            <div class="form-group mb-0">
+                                <div class="custom-control custom-checkbox">
+                                    @Html.CheckBoxFor(x => x.TalentStatus, new { @class = "custom-control-input", @id = "chcBaslikDurum" })
+                                    <label class="custom-control-label" for="chcBaslikDurum">Yetenek Aktiflik Durumu.</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Değişiklikleri Kaydet</button>
+                        </div>
+                    }
+                </div>
+                <!-- /.card -->
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->

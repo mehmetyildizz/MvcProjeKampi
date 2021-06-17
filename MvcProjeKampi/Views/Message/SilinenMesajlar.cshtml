@@ -5,6 +5,7 @@
     ViewBag.Title = "SilinenMesajlar";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     var stylebold = "";
+    var readornot = "";
 }
 
 <!-- Content Header (Page header) -->
@@ -34,6 +35,12 @@
                             <thead>
                                 <tr>
                                     <th>
+                                        #
+                                    </th>
+                                    <th>
+                                        #
+                                    </th>
+                                    <th>
                                         Kime
                                     </th>
                                     <th>
@@ -49,9 +56,19 @@
                                 {
                                     int Uznlk = 32;
                                     stylebold = "";
-                                    if (item.MessageStatusRead == false){stylebold = "font-weight:bold";}
+                                    readornot = "";
+                                    if (item.MessageStatusRead == false)
+                                    {
+                                        stylebold = "font-weight:bold";
+                                        readornot = "far fa-envelope";
+                                    }
+                                    else
+                                    {
+                                        readornot = "far fa-envelope-open";
+                                    }
                                     <tr style="@stylebold">
-                                        @*<td class="mailbox-star"><a href="/Message/GidenMesajSil/@item.MessageID"><i class="far fa-trash-alt"></i></a></td>*@
+                                        <td class="mailbox-star"><a href="/Message/KaliciMesajSil/@item.MessageID"><i class="far fa-trash-alt"></i></a></td>
+                                        <td class="mailbox-star"><a href="/Message/GidenMesajDetay/@item.MessageID"><i class="@readornot"></i></a></td>
                                         <td class="mailbox-name"><a href="/Message/GidenMesajDetay/@item.MessageID">@item.MessageReciever</a></td>
                                         <td class="mailbox-subject">
                                             @if (Regex.Replace(Regex.Replace(item.MessageSubject + " - " + item.MessageContent, "&nbsp;", " "), "<[^>]+>|&nbsp;", String.Empty).Length < Uznlk)
