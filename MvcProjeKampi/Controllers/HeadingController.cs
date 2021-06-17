@@ -118,7 +118,7 @@ namespace MvcProjeKampi.Controllers
             List<SelectListItem> yazardeger = (from x in wm.YazarListeGetir()
                                                   select new SelectListItem
                                                   {
-                                                      Text = x.WriterName,
+                                                      Text = x.WriterName + " " + x.WriterSurName,
                                                       Value = x.WriterID.ToString()
                                                   }).ToList();
             ViewBag.Yzr = yazardeger;
