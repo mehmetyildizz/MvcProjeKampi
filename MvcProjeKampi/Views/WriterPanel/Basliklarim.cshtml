@@ -1,0 +1,149 @@
+﻿@using EntityLayer.Concrete
+@model List<Heading>
+@{
+    ViewBag.Title = "MyHeading";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+@{string color = "";
+    string color3 = "";
+    string butonstatus = "";}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Başlıklar</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Başlıklar Listesi</h3>
+                        <a href="/WriterPanel/BaslikEkle" class="btn bg-gradient-secondary btn-sm float-right">Yeni Başlık Ekle</a>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body" style="padding-right: 0rem; padding-left: 0rem">
+                        <table id="example1" class="table table-striped projects">
+                            <thead>
+                                <tr>
+                                    <th style="width: 1%">
+                                        #
+                                    </th>
+                                    <th style="width: 25%">
+                                        Başlık Adı
+                                    </th>
+                                    <th style="width: 25%">
+                                        Oluşturan Yazar
+                                    </th>
+                                    <th style="width: 10%" class="text-center">
+                                        Kategori
+                                    </th>
+                                    <th style="width: 29%">
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    if (item.Category.CategoryName == "Tiyatro")
+                                    {
+                                        color = "badge badge-warning";
+                                    }
+                                    if (item.Category.CategoryName == "Kitap")
+                                    {
+                                        color = "badge badge-success";
+                                    }
+                                    if (item.Category.CategoryName == "Spor")
+                                    {
+                                        color = "badge badge-info";
+                                    }
+                                    if (item.Category.CategoryName == "Film")
+                                    {
+                                        color = "badge badge-primary";
+                                    }
+                                    if (item.Category.CategoryName == "Dizi")
+                                    {
+                                        color = "badge badge-secondary";
+                                    }
+                                    if (item.Category.CategoryName == "Yazılım")
+                                    {
+                                        color = "badge badge-danger";
+                                    }
+                                    <tr>
+                                        <td>
+                                            @item.HeadingID
+                                        </td>
+                                        <td>
+                                            <a>
+                                                @item.HeadingName
+                                            </a>
+                                            <br />
+                                            <small>
+                                                @(((DateTime)item.HeadingDate).ToString("dd-MMM-yyyy"))
+                                                @*@item.HeadingDate.ToShortDateString()*@
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item">
+                                                    <img alt="Avatar" class="table-avatar" src="@item.Writer.WriterImage">
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    @item.Writer.WriterName @item.Writer.WriterSurName
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td class="project-state">
+                                            <span class="@color">@item.Category.CategoryName</span>
+                                        </td>
+                                        @if (item.HeadingStatus == true)
+                                        {
+                                            butonstatus = "Pasif Yap";
+                                            color3 = "btn btn-danger";
+                                        }
+                                        else
+                                        {
+                                            butonstatus = "Aktif Yap";
+                                            color3 = "btn btn-success";
+                                        }
+                                        <td class="project-actions text-right">
+                                            <a class="btn btn-primary btn-sm" href="/Content/BasligaAitYazilar/@item.HeadingID">
+                                                <i class="fas fa-folder">
+                                                </i>
+                                                Yazılar
+                                            </a>
+                                            <a class="btn btn-info btn-sm" href="/WriterPanel/BaslikGuncelle/@item.HeadingID">
+                                                <i class="fas fa-pencil-alt">
+                                                </i>
+                                                Düzenle
+                                            </a>
+                                            <a class="@color3 btn-sm" href="/WriterPanel/BaslikSil/@item.HeadingID">
+                                                <i class="fas fa-trash">
+                                                </i>
+                                                @butonstatus
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

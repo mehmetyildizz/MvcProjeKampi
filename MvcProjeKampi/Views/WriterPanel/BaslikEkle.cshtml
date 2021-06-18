@@ -1,0 +1,62 @@
+﻿@model EntityLayer.Concrete.Heading
+@{
+    ViewBag.Title = "BaslikEkle";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<!-- Main content -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Başlıklar</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Başlık Ekle</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    @using (Html.BeginForm("BaslikEkle", "WriterPanel", FormMethod.Post, new { @id = "quickForm" }))
+                    {
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="BaslikAdiInput">Başlık Adı</label>
+                                @Html.TextBoxFor(x => x.HeadingName, new { @placeholder = "Başlık Adı Giriniz", @class = "form-control", @id = "BaslikAdiInput" })
+                                @Html.ValidationMessageFor(x => x.HeadingName, string.Empty, new { @class = "error invalid-feedback d-block", @id = "BaslikAdiInput-error" })
+                            </div>
+                            <div class="form-group">
+                                <label for="KategoriAdiInput">Kategori Adı</label>
+                                @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.Ktgr, new { @class = "form-control", @id = "KategoriAdiInput" })
+                                @Html.ValidationMessageFor(x => x.CategoryID, string.Empty, new { @class = "error invalid-feedback d-block", @id = "KategoriAdiInput-error" })
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                        </div>
+                    }
+                </div>
+                <!-- /.card -->
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->

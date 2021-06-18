@@ -16,8 +16,8 @@ namespace MvcProjeKampi.Controllers
         HeadingManager hm = new HeadingManager(new EfHeadingDal());
         CategoryManager cm = new CategoryManager(new EfCategoryDal());
         WriterManager wm = new WriterManager(new EfWriterDal());
-
         HeadingValidator HeadingValidator = new HeadingValidator();
+        
         public ActionResult Index()
         {
             var HeadingDegerleri = hm.BaslikListeGetir();
