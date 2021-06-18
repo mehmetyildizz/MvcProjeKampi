@@ -46,12 +46,10 @@
                     <div class="form-group">
                         <label for="YazarAdiInput">Yazar Adı</label>
                         @Html.DropDownListFor(x => x.WriterID, (List<SelectListItem>)ViewBag.Yzr, new { @class = "form-control", @id = "YazarAdiInput" })
-                        @*@Html.ValidationMessageFor(x => x.WriterID, string.Empty, new { @class = "error invalid-feedback d-block", @id = "YazarAdiInput-error" })*@
                     </div>
                     <div class="form-group">
                         <label for="BaslikTarihInput">Başlık Tarihi</label>
                         @Html.TextBoxFor(x => x.HeadingDate, new { @readonly = "readonly", @placeholder = "Başlık Tarihi Giriniz", @class = "form-control", @id = "BaslikTarihInput" })
-                        @*@Html.ValidationMessageFor(x => x.HeadingDate, string.Empty, new { @class = "error invalid-feedback d-block", @id = "BaslikTarihInput-error" })*@
                     </div>
                     <div class="form-group mb-0">
                         <div class="custom-control custom-checkbox">

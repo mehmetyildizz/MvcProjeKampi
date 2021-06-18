@@ -46,7 +46,6 @@
                             <div class="form-group">
                                 <label for="YazarAdiInput">Yazar Adı</label>
                                 @Html.DropDownListFor(x => x.WriterID, (List<SelectListItem>)ViewBag.Yzr, new { @class = "form-control", @id = "YazarAdiInput" })
-                                @*@Html.ValidationMessageFor(x => x.WriterID, string.Empty, new { @class = "error invalid-feedback d-block", @id = "YazarAdiInput-error" })*@
                             </div>
                             <div class="form-group mb-0">
                                 <div class="custom-control custom-checkbox">
