@@ -38,6 +38,11 @@ namespace BusinessLayer.Concrete
             return _headingDal.Listele();
         }
 
+        public List<Heading> YazarBaslikListeGetir()
+        {
+            return _headingDal.Listele(x => x.WriterID == 1);
+        }
+
         public void BaslikSil(Heading heading)
         {
             _headingDal.Guncelle(heading);

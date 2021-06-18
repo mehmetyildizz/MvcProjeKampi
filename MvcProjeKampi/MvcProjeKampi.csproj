@@ -145,6 +145,7 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\TalentController.cs" />
     <Compile Include="Controllers\WriterController.cs" />
+    <Compile Include="Controllers\WriterPanelController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2805,6 +2806,11 @@
     <Content Include="Views\Talent\YetenekKarti.cshtml" />
     <Content Include="Views\Talent\YetenekEkle.cshtml" />
     <Content Include="Views\Talent\YetenekGuncelle.cshtml" />
+    <Content Include="Views\Shared\_WriterLayout.cshtml" />
+    <Content Include="Views\WriterPanel\WriterProfile.cshtml" />
+    <Content Include="Views\WriterPanel\Basliklarim.cshtml" />
+    <Content Include="Views\WriterPanel\BaslikEkle.cshtml" />
+    <Content Include="Views\WriterPanel\BaslikGuncelle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

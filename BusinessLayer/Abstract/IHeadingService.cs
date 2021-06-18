@@ -10,6 +10,8 @@ namespace BusinessLayer.Abstract
     public interface IHeadingService
     {
         List<Heading> BaslikListeGetir();
+        
+        List<Heading> YazarBaslikListeGetir();
 
         void BaslikEkle(Heading Heading);
 
