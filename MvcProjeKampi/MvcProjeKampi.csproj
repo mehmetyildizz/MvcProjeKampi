@@ -146,6 +146,7 @@
     <Compile Include="Controllers\TalentController.cs" />
     <Compile Include="Controllers\WriterController.cs" />
     <Compile Include="Controllers\WriterPanelController.cs" />
+    <Compile Include="Controllers\WriterPanelMessageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2811,6 +2812,14 @@
     <Content Include="Views\WriterPanel\Basliklarim.cshtml" />
     <Content Include="Views\WriterPanel\BaslikEkle.cshtml" />
     <Content Include="Views\WriterPanel\BaslikGuncelle.cshtml" />
+    <Content Include="Views\WriterPanelMessage\GelenKutusu.cshtml" />
+    <Content Include="Views\WriterPanelMessage\MesajKlasorPartial.cshtml" />
+    <Content Include="Views\WriterPanelMessage\GidenKutusu.cshtml" />
+    <Content Include="Views\WriterPanelMessage\SilinenMesajlar.cshtml" />
+    <Content Include="Views\WriterPanelMessage\TaslakMesajlar.cshtml" />
+    <Content Include="Views\WriterPanelMessage\YeniMesajGonder.cshtml" />
+    <Content Include="Views\WriterPanelMessage\GelenMesajDetay.cshtml" />
+    <Content Include="Views\WriterPanelMessage\GidenMesajDetay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

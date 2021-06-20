@@ -1,0 +1,69 @@
+﻿@model EntityLayer.Concrete.Message
+@{
+    ViewBag.Title = "YeniMesajGonder";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Yeni Mesaj Oluştur</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        @Html.Action("MesajKlasorPartial", "WriterPanelMessage")
+        <div class="col-md-9">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">Yeni Mesaj Oluştur</h3>
+                </div>
+                <!-- /.card-header -->
+                @using (Html.BeginForm("YeniMesajGonder", "WriterPanelMessage", FormMethod.Post, new { @id = "quickForm" }))
+                {
+                    <div class="card-body">
+                        <div class="form-group">
+                            @Html.TextBoxFor(x => x.MessageReciever, new { @placeholder = "Alıcı Mail Adresi Giriniz", @class = "form-control", @id = "MessageRecieverInput" })
+                            @Html.ValidationMessageFor(x => x.MessageReciever, string.Empty, new { @class = "error invalid-feedback d-block", @id = "MessageRecieverInput-error" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(x => x.MessageSubject, new { @placeholder = "Mesaj Konusu Giriniz", @class = "form-control", @id = "MessageSubjectInput" })
+                            @Html.ValidationMessageFor(x => x.MessageSubject, string.Empty, new { @class = "error invalid-feedback d-block", @id = "MessageSubjectInput-error" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextAreaFor(x => x.MessageContent, new { @placeholder = "Mesaj İçeriği Giriniz", @class = "form-control", @id = "MessageContentInput", @style = "height: 300px" })
+                            @Html.ValidationMessageFor(x => x.MessageContent, string.Empty, new { @class = "error invalid-feedback d-block", @id = "MessageContentInput-error" })
+                        </div>
+                        <div class="form-group">
+                            <div class="btn btn-default btn-file">
+                                <i class="fas fa-paperclip"></i> Dosya Ekle
+                                <input type="file" name="DosyaEkle">
+                            </div>
+                            <p class="help-block">En Fazla 32MB</p>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="float-right">
+                            <button type="submit" value="Taslak" name="mesaj:Taslak" class="btn btn-default"><i class="fas fa-pencil-alt"></i> Taslak</button>
+                            <button type="submit" value="Gonder" name="mesaj:Gonder" class="btn btn-primary"><i class="far fa-envelope"></i> Gönder</button>
+                        </div>
+                        <button type="reset" class="btn btn-default"><i class="fas fa-times"></i> İptal</button>
+                        <button type="reset" class="btn btn-default"><span class="material-icons">outbox</span><span class="material-icons">move_to_inbox</span> İptal</button>
+                    </div>
+                    <!-- /.card-footer -->
+                }
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

@@ -20,22 +20,22 @@ namespace BusinessLayer.Concrete
 
         public List<Message> MesajListeGetirGelen()
         {
-            return _messageDal.Listele(x=>x.MessageStatusReceiver== false && x.MessageReciever == "admin@yandex.com" && x.MessageStatusDraft == false);
+            return _messageDal.Listele(x => x.MessageStatusReceiver == false && x.MessageReciever == "mehmet@gmail.com" && x.MessageStatusDraft == false);
         }
 
         public List<Message> MesajListeGetirGiden()
         {
-            return _messageDal.Listele(x => x.MessageStatusSender == false && x.MessageSender == "admin@yandex.com" && x.MessageStatusDraft == false);
+            return _messageDal.Listele(x => x.MessageStatusSender == false && x.MessageSender == "mehmet@gmail.com" && x.MessageStatusDraft == false);
         }
 
         public List<Message> MesajListeGetirSilinen()
         {
-            return _messageDal.Listele(x => x.MessageStatusSender == true || x.MessageStatusReceiver == true);
+            return _messageDal.Listele(x => (x.MessageStatusSender == true && x.MessageSender == "mehmet@gmail.com") || (x.MessageStatusReceiver == true && x.MessageReciever == "mehmet@gmail.com"));
         }
 
         public List<Message> MesajListeGetirTaslak()
         {
-            return _messageDal.Listele(x => x.MessageStatusDraft == true);
+            return _messageDal.Listele(x => x.MessageStatusDraft == true && x.MessageSender == "mehmet@gmail.com");
         }
 
         public void MesajEkle(Message message)

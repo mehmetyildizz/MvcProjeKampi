@@ -111,14 +111,7 @@ namespace MvcProjeKampi.Controllers
         public ActionResult BaslikSil(int id)
         {
             var baslikdeger = hm.BaslikIDGetir(id);
-            if (baslikdeger.HeadingStatus == false)
-            {
-                baslikdeger.HeadingStatus = true;
-            }
-            else
-            {
-                baslikdeger.HeadingStatus = false;
-            };
+            baslikdeger.HeadingStatus = false;
             hm.BaslikSil(baslikdeger);
             return RedirectToAction("Basliklarim");
         }
