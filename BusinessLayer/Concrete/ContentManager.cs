@@ -17,7 +17,7 @@ namespace BusinessLayer.Concrete
         {
             _contentDal = contentDal;
         }
-        
+
         public void YaziEkle(Content writer)
         {
             throw new NotImplementedException();
@@ -41,6 +41,11 @@ namespace BusinessLayer.Concrete
         public List<Content> YaziListeBaslikIDGetir(int id)
         {
             return _contentDal.Listele(x => x.HeadingID == id);
+        }
+
+        public List<Content> YaziListeYazarIDGetir(int id)
+        {
+            return _contentDal.Listele(x => x.WriterID == id);
         }
 
         public void YaziSil(Content content)

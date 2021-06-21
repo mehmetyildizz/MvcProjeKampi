@@ -13,6 +13,8 @@ namespace BusinessLayer.Abstract
 
         List<Content> YaziListeBaslikIDGetir(int id);
 
+        List<Content> YaziListeYazarIDGetir(int id);
+
         void YaziEkle(Content content);
 
         Writer YaziIDGetir(int id);

@@ -16,6 +16,7 @@ namespace MvcProjeKampi.Controllers
     {
         MessageManager mm = new MessageManager(new EfMessageDal());
         MessageValidator messageValidator = new MessageValidator();
+        String WriterMail1 = "admin@yandex.com";
 
         [Authorize(Roles = "A")]
         public ActionResult GelenKutusu()
@@ -57,7 +58,7 @@ namespace MvcProjeKampi.Controllers
             ValidationResult results = messageValidator.Validate(p);
             if (results.IsValid)
             {
-                p.MessageSender = "admin@yandex.com";
+                p.MessageSender = WriterMail1;
                 p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
 
                 mm.MesajEkle(p);
@@ -77,7 +78,7 @@ namespace MvcProjeKampi.Controllers
         [MultipleButton(Name = "mesaj", Argument = "Taslak")]
         public ActionResult Taslak(Message p)
         {
-            p.MessageSender = "admin@yandex.com";
+            p.MessageSender = WriterMail1;
             p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             p.MessageStatusDraft = true;
             mm.MesajEkle(p);

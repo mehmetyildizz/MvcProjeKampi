@@ -19,7 +19,7 @@ namespace MvcProjeKampi.Controllers
         MessageManager mm = new MessageManager(new EfMessageDal());
         MessageValidator messageValidator = new MessageValidator();
         Context context = new Context();
-        String WriterMail1 = "mehmet@gmail.com";
+        String WriterMail1 = "emre@gmail.com";
 
         public ActionResult GelenKutusu()
         {
@@ -154,10 +154,10 @@ namespace MvcProjeKampi.Controllers
             var GelenMesajYeni = context.Messages.Count(x => x.MessageReciever == WriterMail1 && x.MessageStatusReceiver == false && x.MessageStatusRead == false).ToString();
             ViewBag.yenimesajGelen = GelenMesajYeni;
 
-            var GidenMesajSayisi = context.Messages.Count(x => x.MessageSender == WriterMail1 && x.MessageStatusSender == false).ToString();
+            var GidenMesajSayisi = context.Messages.Count(x => x.MessageSender == WriterMail1 && x.MessageStatusSender == false && x.MessageStatusDraft == false).ToString();
             ViewBag.mesajsayisiGiden = GidenMesajSayisi;
 
-            var TaslakMesajSayisi = context.Messages.Count(x => x.MessageStatusDraft == true).ToString();
+            var TaslakMesajSayisi = context.Messages.Count(x => x.MessageStatusDraft == true && x.MessageSender == WriterMail1).ToString();
             ViewBag.mesajsayisiTaslak = TaslakMesajSayisi;
 
             var SilinenMesajSayisi = context.Messages.Count(x => (x.MessageStatusSender == true && x.MessageSender == WriterMail1) || (x.MessageStatusReceiver == true && x.MessageReciever == WriterMail1)).ToString();

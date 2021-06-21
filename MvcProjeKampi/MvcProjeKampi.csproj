@@ -145,6 +145,7 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\TalentController.cs" />
     <Compile Include="Controllers\WriterController.cs" />
+    <Compile Include="Controllers\WriterPanelContentController.cs" />
     <Compile Include="Controllers\WriterPanelController.cs" />
     <Compile Include="Controllers\WriterPanelMessageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2820,6 +2821,7 @@
     <Content Include="Views\WriterPanelMessage\YeniMesajGonder.cshtml" />
     <Content Include="Views\WriterPanelMessage\GelenMesajDetay.cshtml" />
     <Content Include="Views\WriterPanelMessage\GidenMesajDetay.cshtml" />
+    <Content Include="Views\WriterPanelContent\Yazilarim.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
