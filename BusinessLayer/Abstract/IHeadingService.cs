@@ -11,7 +11,7 @@ namespace BusinessLayer.Abstract
     {
         List<Heading> BaslikListeGetir();
         
-        List<Heading> YazarBaslikListeGetir();
+        List<Heading> YazarBaslikListeGetir(int id);
 
         void BaslikEkle(Heading Heading);
 

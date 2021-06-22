@@ -14,11 +14,12 @@ namespace MvcProjeKampi.Controllers
 {
     public class LoginController : Controller
     {
-        AdminManager am = new AdminManager(new EfAdminDal());
-        AdminValidator adminValidator = new AdminValidator();
-        LoginValidator loginValidator = new LoginValidator();
+        readonly AdminManager am = new AdminManager(new EfAdminDal());
+        readonly AdminValidator adminValidator = new AdminValidator();
+        readonly LoginValidator loginValidator = new LoginValidator();
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
@@ -26,16 +27,17 @@ namespace MvcProjeKampi.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Index(Admin p, string username, string password, string ReturnUrl)
+        public ActionResult Index(Admin p, string ReturnUrl)
         {
             ValidationResult results = loginValidator.Validate(p);
             if (results.IsValid)
             {
                 var crypto = new SimpleCrypto.PBKDF2();
-                var adminuserinfo = am.AdminListeGetir().Where(x => x.AdminUserName == crypto.Compute(p.AdminUserName, x.AdminPasswordSalt) && x.AdminPassword == crypto.Compute(p.AdminPassword, x.AdminPasswordSalt)).FirstOrDefault();
+                var adminuserinfo = am.AdminListeGetir().Where(x => x.AdminUserName == crypto.Compute(p.AdminUserName, x.AdminSalt) && x.AdminPassword == crypto.Compute(p.AdminPassword, x.AdminSalt)).FirstOrDefault();
                 if (adminuserinfo != null)
                 {
                     FormsAuthentication.SetAuthCookie(adminuserinfo.AdminUserName, false);
+                    Session["AdminID"] = adminuserinfo.AdminID;
                     Session["AdminUserName"] = p.AdminUserName; // tekrar bakılacak, veritabanından hash den dönüştürülerek denenecek
                     Session["AdminUserRole"] = adminuserinfo.AdminRole;
                     Session["AdminName"] = adminuserinfo.AdminName;
@@ -69,6 +71,7 @@ namespace MvcProjeKampi.Controllers
 
         public ActionResult Logout()
         {
+            Session["AdminID"] = null;
             Session["AdminUserName"] = null;
             Session["AdminUserRole"] = null;
             Session["AdminName"] = null;
@@ -97,7 +100,7 @@ namespace MvcProjeKampi.Controllers
 
                 p.AdminUserName = SifresizKullaniciAdi;
                 p.AdminPassword = SifresizSifre;
-                p.AdminPasswordSalt = gizle.Salt;
+                p.AdminSalt = gizle.Salt;
                 am.AdminEkle(p);
                 return RedirectToAction("AdminListe");
             }
@@ -115,6 +118,74 @@ namespace MvcProjeKampi.Controllers
         {
             var AdminDegerleri = am.AdminListeGetir();
             return View(AdminDegerleri);
+        }
+
+        readonly WriterManager wm = new WriterManager(new EfWriterDal());
+        readonly WriterLoginValidator WriterLoginValidator = new WriterLoginValidator();
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult YazarGiris()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult YazarGiris(Writer p, string ReturnUrl)
+        {
+            ValidationResult results = WriterLoginValidator.Validate(p);
+            if (results.IsValid)
+            {
+                // var crypto = new SimpleCrypto.PBKDF2();
+                // var writeruserinfo = wm.YazarListeGetir().Where(x => x.WriterMail == crypto.Compute(p.WriterMail, x.WriterSalt) && x.WriterPassword == crypto.Compute(p.WriterPassword, x.WriterSalt)).FirstOrDefault();
+                var writeruserinfo = wm.YazarListeGetir().Where(x => x.WriterMail == p.WriterMail && x.WriterPassword == p.WriterPassword).FirstOrDefault();
+                if (writeruserinfo != null)
+                {
+                    FormsAuthentication.SetAuthCookie(writeruserinfo.WriterMail, false);
+                    Session["WriterID"] = writeruserinfo.WriterID;
+                    Session["WriterMail"] = writeruserinfo.WriterMail;
+                    Session["WriterName"] = writeruserinfo.WriterName;
+                    Session["WriterSurname"] = writeruserinfo.WriterSurName;
+                    Session["WriterTitle"] = writeruserinfo.WriterTitle;
+
+                    if (!string.IsNullOrEmpty(ReturnUrl))
+                    {
+                        return Redirect(ReturnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Profilim", "WriterPanel");
+                    }
+                }
+                else
+                {
+                    TempData["HataMesaji1"] = "Kullanıcı Adı yada Şifre hatalı.";
+                    TempData["HataMesaji2"] = "Kontrol edip tekrar deneyiniz.";
+                    return View();
+                }
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+        }
+
+        public ActionResult LogoutWriter()
+        {
+            Session["WriterID"] = null;
+            Session["WriterMail"] = null;
+            Session["WriterName"] = null;
+            Session["WriterSurname"] = null;
+            Session["WriterTitle"] = null;
+            Session.Clear();
+            Session.Abandon();
+            FormsAuthentication.SignOut();
+            return RedirectToAction("YazarGiris", "Login");
         }
     }
 }

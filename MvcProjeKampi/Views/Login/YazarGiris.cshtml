@@ -1,4 +1,4 @@
-﻿@model EntityLayer.Concrete.Admin
+﻿@model EntityLayer.Concrete.Writer
 @{
     Layout = null;
 }
@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mvc Proje Kampı Admin Giriş</title>
+    <title>Mvc Proje Kampı Yazar Giriş</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -24,7 +24,7 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="/Istatistik/Index" class="h1"><b>MVC</b> Admin Giriş</a>
+                <a href="/WriterPanel/WriterProfile" class="h1"><b>MVC</b> Yazar Giriş</a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Oturumunuzu başlatmak için giriş yapın</p>
@@ -34,25 +34,25 @@
                         <p class="login-box-msg" style="color: #e91e63">@TempData["HataMesaji1"]<br />@TempData["HataMesaji2"]</p>
                     </div>
                 }
-                @using (Html.BeginForm("Index", "Login", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post, new { @class = "login-form", @id = "quickForm" }))
+                @using (Html.BeginForm("YazarGiris", "Login", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post, new { @class = "login-form", @id = "quickForm" }))
                 {
                     <div class="input-group mb-3">
-                        @Html.TextBoxFor(x => x.AdminUserName, new { @type = "email", @name = "AdminUserName", @placeholder = "Kullanıcı Adı", @class = "form-control", @id = "KullaniciAdiInput" })
+                        @Html.TextBoxFor(x => x.WriterMail, new { @type = "email", @name = "WriterMail", @placeholder = "Kullanıcı Adı", @class = "form-control", @id = "KullaniciAdiInput" })
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
                             </div>
                         </div>
-                        @Html.ValidationMessageFor(x => x.AdminUserName, string.Empty, new { @class = "error invalid-feedback d-block", @id = "KullaniciAdiInput-error" })
+                        @Html.ValidationMessageFor(x => x.WriterMail, string.Empty, new { @class = "error invalid-feedback d-block", @id = "KullaniciAdiInput-error" })
                     </div>
                     <div class="input-group mb-3">
-                        @Html.TextBoxFor(x => x.AdminPassword, new { @type = "password", @name = "AdminPassword", @placeholder = "Şifre", @class = "form-control", @id = "SifreInput" })
+                        @Html.TextBoxFor(x => x.WriterPassword, new { @type = "password", @name = "WriterPassword", @placeholder = "Şifre", @class = "form-control", @id = "SifreInput" })
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
-                        @Html.ValidationMessageFor(x => x.AdminPassword, string.Empty, new { @class = "error invalid-feedback d-block", @id = "SifreInput-error" })
+                        @Html.ValidationMessageFor(x => x.WriterPassword, string.Empty, new { @class = "error invalid-feedback d-block", @id = "SifreInput-error" })
                     </div>
                     <div class="row">
                         <div class="col-8">

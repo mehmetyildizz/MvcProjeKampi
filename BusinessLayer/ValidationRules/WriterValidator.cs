@@ -32,5 +32,17 @@ namespace BusinessLayer.ValidationRules
             RuleFor(x => x.WriterAbout).MaximumLength(50).WithMessage("Yazar Hakkında Bilgiler En Fazla 50 Karakter Olmalı."); 
             RuleFor(x => x.WriterAbout).Matches("[Aa]").WithMessage("Yazar Hakkında Bilgiler İçerisinde 'a' Harfi Olmalıdır.");
         }
+
+    }
+
+    public class WriterLoginValidator : AbstractValidator<Writer>
+    {
+        public WriterLoginValidator()
+        {
+            RuleFor(x => x.WriterMail).NotEmpty().WithMessage("Admin Kullanıcı Adı Boş Olamaz.");
+            RuleFor(x => x.WriterMail).EmailAddress().WithMessage("Admin Kullanıcı Adı, Geçerli Bir Mail Adresi Olmalıdır.");
+            RuleFor(x => x.WriterPassword).NotEmpty().WithMessage("Parola Boş Olamaz.");
+            RuleFor(x => x.WriterPassword).MinimumLength(2).WithMessage("Parola En Az 2 Karakter Olmalı.");
+        }
     }
 }

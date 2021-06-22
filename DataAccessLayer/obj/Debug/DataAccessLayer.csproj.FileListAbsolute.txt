@@ -104,3 +104,5 @@ E:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.asdas.
 D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.talent.resources
 D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.talentstatus.resources
 D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.asdas.resources
+E:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations._658655.resources
+E:\MVC\MvcProjeKampi\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations._564894.resources

@@ -17,14 +17,14 @@ namespace MvcProjeKampi.Controllers
         CategoryManager cm = new CategoryManager(new EfCategoryDal());
         WriterHeadingValidator WriterHeadingValidator = new WriterHeadingValidator();
 
-        public ActionResult WriterProfile()
+        public ActionResult Profilim()
         {
             return View();
         }
 
         public ActionResult Basliklarim()
         {
-            var myheadingdeger = hm.YazarBaslikListeGetir();
+            var myheadingdeger = hm.YazarBaslikListeGetir(Convert.ToInt32(Session["WriterID"]));
             return View(myheadingdeger);
         }
 
@@ -53,7 +53,7 @@ namespace MvcProjeKampi.Controllers
             ValidationResult results = WriterHeadingValidator.Validate(p);
             if (results.IsValid)
             {
-                p.WriterID = 1;
+                p.WriterID = Convert.ToInt32(Session["WriterID"]);
                 p.HeadingStatus = true;
                 p.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                 hm.BaslikEkle(p);
@@ -102,7 +102,7 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult BaslikGuncelle(Heading p)
         {
-            p.WriterID = 1;
+            p.WriterID = Convert.ToInt32(Session["WriterID"]);
             p.HeadingStatus = true;
             hm.BaslikGuncelle(p);
             return RedirectToAction("Basliklarim");

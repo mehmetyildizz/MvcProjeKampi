@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,13 @@ namespace MvcProjeKampi.Controllers
     {
         ContentManager cm = new ContentManager(new EfContentDal());
         ContentValidator contentValidator = new ContentValidator();
-        int writerIDsession = 1;
 
         public ActionResult Yazilarim()
         {
-            var yazideger = cm.YaziListeYazarIDGetir(writerIDsession); // WriterID session dan alınacak
+            Context c = new Context();
+            var yazarIDdeger = c.Writers.Where(x => x.WriterMail == (string)Session["WriterMail"]).Select(y => y.WriterID).FirstOrDefault();
+            // var yazideger = cm.YaziListeYazarIDGetir(Convert.ToInt32(Session["WriterID"]));
+            var yazideger = cm.YaziListeYazarIDGetir(yazarIDdeger);
             return View(yazideger);
         }
     }

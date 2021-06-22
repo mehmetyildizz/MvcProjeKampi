@@ -16,10 +16,9 @@ namespace MvcProjeKampi.Controllers
 {
     public class WriterPanelMessageController : Controller
     {
-        MessageManager mm = new MessageManager(new EfMessageDal());
-        MessageValidator messageValidator = new MessageValidator();
-        Context context = new Context();
-        String WriterMail1 = "emre@gmail.com";
+        readonly MessageManager mm = new MessageManager(new EfMessageDal());
+        readonly MessageValidator messageValidator = new MessageValidator();
+        readonly Context context = new Context();
 
         public ActionResult GelenKutusu()
         {
@@ -59,7 +58,7 @@ namespace MvcProjeKampi.Controllers
             ValidationResult results = messageValidator.Validate(p);
             if (results.IsValid)
             {
-                p.MessageSender = WriterMail1;
+                p.MessageSender = Convert.ToString(Session["WriterMail"]);
                 p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
 
                 mm.MesajEkle(p);
@@ -79,7 +78,7 @@ namespace MvcProjeKampi.Controllers
         [MultipleButton(Name = "mesaj", Argument = "Taslak")]
         public ActionResult Taslak(Message p)
         {
-            p.MessageSender = WriterMail1;
+            p.MessageSender = Convert.ToString(Session["WriterMail"]);
             p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             p.MessageStatusDraft = true;
             mm.MesajEkle(p);
@@ -149,20 +148,22 @@ namespace MvcProjeKampi.Controllers
 
         public PartialViewResult MesajKlasorPartial()
         {
-            var GelenMesajSayisi = context.Messages.Count(x => x.MessageReciever == WriterMail1 && x.MessageStatusReceiver == false).ToString();
+            string WriterMail = Session["WriterMail"].ToString();
+
+            var GelenMesajSayisi = context.Messages.Count(x => x.MessageReciever == WriterMail && x.MessageStatusReceiver == false).ToString();
             ViewBag.mesajsayisiGelen = GelenMesajSayisi;
-            var GelenMesajYeni = context.Messages.Count(x => x.MessageReciever == WriterMail1 && x.MessageStatusReceiver == false && x.MessageStatusRead == false).ToString();
+            var GelenMesajYeni = context.Messages.Count(x => x.MessageReciever == WriterMail && x.MessageStatusReceiver == false && x.MessageStatusRead == false).ToString();
             ViewBag.yenimesajGelen = GelenMesajYeni;
 
-            var GidenMesajSayisi = context.Messages.Count(x => x.MessageSender == WriterMail1 && x.MessageStatusSender == false && x.MessageStatusDraft == false).ToString();
+            var GidenMesajSayisi = context.Messages.Count(x => x.MessageSender == WriterMail && x.MessageStatusSender == false && x.MessageStatusDraft == false).ToString();
             ViewBag.mesajsayisiGiden = GidenMesajSayisi;
 
-            var TaslakMesajSayisi = context.Messages.Count(x => x.MessageStatusDraft == true && x.MessageSender == WriterMail1).ToString();
+            var TaslakMesajSayisi = context.Messages.Count(x => x.MessageStatusDraft == true && x.MessageSender == WriterMail).ToString();
             ViewBag.mesajsayisiTaslak = TaslakMesajSayisi;
 
-            var SilinenMesajSayisi = context.Messages.Count(x => (x.MessageStatusSender == true && x.MessageSender == WriterMail1) || (x.MessageStatusReceiver == true && x.MessageReciever == WriterMail1)).ToString();
+            var SilinenMesajSayisi = context.Messages.Count(x => (x.MessageStatusSender == true && x.MessageSender == WriterMail) || (x.MessageStatusReceiver == true && x.MessageReciever == WriterMail)).ToString();
             ViewBag.mesajsayisiSilinen = SilinenMesajSayisi;
-            var SilinenMesajYeni = context.Messages.Count(x => ((x.MessageStatusSender == true && x.MessageSender == WriterMail1) || (x.MessageStatusReceiver == true && x.MessageReciever == WriterMail1)) && x.MessageStatusRead == false).ToString();
+            var SilinenMesajYeni = context.Messages.Count(x => ((x.MessageStatusSender == true && x.MessageSender == WriterMail) || (x.MessageStatusReceiver == true && x.MessageReciever == WriterMail)) && x.MessageStatusRead == false).ToString();
             ViewBag.yenimesajSilinen = SilinenMesajYeni;
 
             return PartialView();

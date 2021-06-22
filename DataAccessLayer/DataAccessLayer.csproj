@@ -74,26 +74,6 @@
     <Compile Include="EntityFramework\EfMessageDal.cs" />
     <Compile Include="EntityFramework\EfTalentDal.cs" />
     <Compile Include="EntityFramework\EfWriterDal.cs" />
-    <Compile Include="Migrations\202106151845598_lkjg.cs" />
-    <Compile Include="Migrations\202106151845598_lkjg.designer.cs">
-      <DependentUpon>202106151845598_lkjg.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106160911402_654.cs" />
-    <Compile Include="Migrations\202106160911402_654.designer.cs">
-      <DependentUpon>202106160911402_654.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106171106009_talent.cs" />
-    <Compile Include="Migrations\202106171106009_talent.designer.cs">
-      <DependentUpon>202106171106009_talent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106171125563_talentstatus.cs" />
-    <Compile Include="Migrations\202106171125563_talentstatus.designer.cs">
-      <DependentUpon>202106171125563_talentstatus.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106171347307_asdas.cs" />
-    <Compile Include="Migrations\202106171347307_asdas.designer.cs">
-      <DependentUpon>202106171347307_asdas.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -106,23 +86,6 @@
       <Project>{4984FD53-B2A7-4B9F-8B66-E724D4B5FE52}</Project>
       <Name>EntityLayer</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106151845598_lkjg.resx">
-      <DependentUpon>202106151845598_lkjg.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106160911402_654.resx">
-      <DependentUpon>202106160911402_654.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106171106009_talent.resx">
-      <DependentUpon>202106171106009_talent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106171125563_talentstatus.resx">
-      <DependentUpon>202106171125563_talentstatus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106171347307_asdas.resx">
-      <DependentUpon>202106171347307_asdas.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

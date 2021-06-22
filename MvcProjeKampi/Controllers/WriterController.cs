@@ -33,6 +33,13 @@ namespace MvcProjeKampi.Controllers
             ValidationResult results = writerValidator.Validate(p);
             if (results.IsValid)
             {
+                //var gizle = new SimpleCrypto.PBKDF2();
+                //var SifresizKullaniciAdi = gizle.Compute(p.WriterMail);
+                //var SifresizSifre = gizle.Compute(p.WriterPassword);
+
+                //p.WriterMail = SifresizKullaniciAdi;
+                //p.WriterPassword = SifresizSifre;
+                //p.WriterSalt = gizle.Salt;
                 wm.YazarEkle(p);
                 return RedirectToAction("Index");
             }

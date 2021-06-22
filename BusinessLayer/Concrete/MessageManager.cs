@@ -11,8 +11,8 @@ namespace BusinessLayer.Concrete
 {
     public class MessageManager : IMessageService
     {
-        IMessageDal _messageDal;
-        string WriterMail1 = "emre@gmail.com";
+        readonly IMessageDal _messageDal;
+        
 
         public MessageManager(IMessageDal messageDal)
         {
@@ -21,22 +21,22 @@ namespace BusinessLayer.Concrete
 
         public List<Message> MesajListeGetirGelen()
         {
-            return _messageDal.Listele(x => x.MessageStatusReceiver == false && x.MessageReciever == WriterMail1);
+            return _messageDal.Listele(x => x.MessageStatusReceiver == false && x.MessageReciever == "mehmet@gmail.com");
         }
 
         public List<Message> MesajListeGetirGiden()
         {
-            return _messageDal.Listele(x => x.MessageStatusSender == false && x.MessageSender == WriterMail1 && x.MessageStatusDraft == false);
+            return _messageDal.Listele(x => x.MessageStatusSender == false && x.MessageSender == "mehmet@gmail.com" && x.MessageStatusDraft == false);
         }
 
         public List<Message> MesajListeGetirSilinen()
         {
-            return _messageDal.Listele(x => (x.MessageStatusSender == true && x.MessageSender == WriterMail1) || (x.MessageStatusReceiver == true && x.MessageReciever == WriterMail1));
+            return _messageDal.Listele(x => (x.MessageStatusSender == true && x.MessageSender == "mehmet@gmail.com") || (x.MessageStatusReceiver == true && x.MessageReciever == "mehmet@gmail.com"));
         }
 
         public List<Message> MesajListeGetirTaslak()
         {
-            return _messageDal.Listele(x => x.MessageStatusDraft == true && x.MessageSender == WriterMail1);
+            return _messageDal.Listele(x => x.MessageStatusDraft == true && x.MessageSender == "mehmet@gmail.com");
         }
 
         public void MesajEkle(Message message)
