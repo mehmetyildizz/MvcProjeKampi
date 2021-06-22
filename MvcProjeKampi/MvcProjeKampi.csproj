@@ -136,6 +136,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\ErrorPageController.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HeadingController.cs" />
@@ -2823,6 +2824,8 @@
     <Content Include="Views\WriterPanelMessage\GidenMesajDetay.cshtml" />
     <Content Include="Views\WriterPanelContent\Yazilarim.cshtml" />
     <Content Include="Views\Login\YazarGiris.cshtml" />
+    <Content Include="Views\Default\Basliklar.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
