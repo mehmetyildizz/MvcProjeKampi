@@ -18,7 +18,8 @@ namespace MvcProjeKampi.Controllers
         public ActionResult Yazilarim()
         {
             Context c = new Context();
-            var yazarIDdeger = c.Writers.Where(x => x.WriterMail == (string)Session["WriterMail"]).Select(y => y.WriterID).FirstOrDefault();
+            string p = (string)Session["WriterMail"];
+            var yazarIDdeger = c.Writers.Where(x => x.WriterMail == p).Select(y => y.WriterID).FirstOrDefault();
             // var yazideger = cm.YaziListeYazarIDGetir(Convert.ToInt32(Session["WriterID"]));
             var yazideger = cm.YaziListeYazarIDGetir(yazarIDdeger);
             return View(yazideger);

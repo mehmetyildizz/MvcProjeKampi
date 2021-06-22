@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -24,7 +25,11 @@ namespace MvcProjeKampi.Controllers
 
         public ActionResult Basliklarim()
         {
-            var myheadingdeger = hm.YazarBaslikListeGetir(Convert.ToInt32(Session["WriterID"]));
+            Context c = new Context();
+            string p1 = (string)Session["WriterMail"];
+            var yazarIDdeger = c.Writers.Where(x => x.WriterMail == p1).Select(y => y.WriterID).FirstOrDefault();
+            // var myheadingdeger = hm.BaslikListeYazarIDGetir(Convert.ToInt32(Session["WriterID"]));
+            var myheadingdeger = hm.BaslikListeYazarIDGetir(yazarIDdeger);
             return View(myheadingdeger);
         }
 
@@ -53,7 +58,12 @@ namespace MvcProjeKampi.Controllers
             ValidationResult results = WriterHeadingValidator.Validate(p);
             if (results.IsValid)
             {
-                p.WriterID = Convert.ToInt32(Session["WriterID"]);
+                Context c = new Context();
+                string p1 = (string)Session["WriterMail"];
+                var yazarIDdeger = c.Writers.Where(x => x.WriterMail == p1).Select(y => y.WriterID).FirstOrDefault();
+
+                p.WriterID = yazarIDdeger;
+                // p.WriterID = Convert.ToInt32(Session["WriterID"]);
                 p.HeadingStatus = true;
                 p.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                 hm.BaslikEkle(p);
@@ -102,7 +112,12 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult BaslikGuncelle(Heading p)
         {
-            p.WriterID = Convert.ToInt32(Session["WriterID"]);
+            Context c = new Context();
+            string p1 = (string)Session["WriterMail"];
+            var yazarIDdeger = c.Writers.Where(x => x.WriterMail == p1).Select(y => y.WriterID).FirstOrDefault();
+
+            p.WriterID = yazarIDdeger;
+            // p.WriterID = Convert.ToInt32(Session["WriterID"]);
             p.HeadingStatus = true;
             hm.BaslikGuncelle(p);
             return RedirectToAction("Basliklarim");
