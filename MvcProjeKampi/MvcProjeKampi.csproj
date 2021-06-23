@@ -2825,6 +2825,7 @@
     <Content Include="Views\WriterPanelContent\Yazilarim.cshtml" />
     <Content Include="Views\Login\YazarGiris.cshtml" />
     <Content Include="Views\Default\Basliklar.cshtml" />
+    <Content Include="Views\Default\Index_.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

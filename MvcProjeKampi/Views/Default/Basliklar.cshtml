@@ -101,26 +101,21 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-                        @foreach (var item in Model)
-                        {
-                            int Uznlk = 30;
-                            string nokta = "...";
-                            <li class="nav-item">
-                                <a href="/WriterPanel/Basliklarim" class="nav-link">
-                                    <p>
-                                        @if (item.HeadingName.Length < Uznlk)
-                                        {
-                                            Uznlk = item.HeadingName.Length;
-                                            nokta = string.Empty;
-                                        }
-                                        @item.HeadingName.Substring(0, Uznlk)@nokta
-                                    </p>
-                                </a>
-                            </li>
-                        }
-                    </ul>
+                    <div>
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+                            @foreach (var item in Model)
+                            {
+                                <li class="nav-item border-bottom">
+                                    <a href="/WriterPanel/Basliklarim" class="nav-link">
+                                        <p>
+                                            @item.HeadingName
+                                        </p>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
@@ -129,7 +124,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" @*style="padding-top: 16px"*@>
-            @RenderBody()
+            @Html.Action("Index", "Default")
         </div>
         <!-- /.content-wrapper -->
         <!-- Main Footer -->

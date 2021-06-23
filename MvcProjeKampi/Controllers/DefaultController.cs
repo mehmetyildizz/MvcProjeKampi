@@ -12,16 +12,18 @@ namespace MvcProjeKampi.Controllers
     public class DefaultController : Controller
     {
         HeadingManager hm = new HeadingManager(new EfHeadingDal());
+        ContentManager cm = new ContentManager(new EfContentDal());
 
-        public ActionResult Index()
+        public PartialViewResult Index()
         {
-            var baslikListe = hm.BaslikListeGetir();
-            return View(baslikListe);
+            var yaziListe = cm.YaziListeGetir();
+            return PartialView(yaziListe);
         }
 
         public ActionResult Basliklar()
         {
-            return View();
+            var baslikListe = hm.BaslikListeGetir();
+            return View(baslikListe);
         }
     }
 }

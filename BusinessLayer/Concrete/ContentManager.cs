@@ -35,7 +35,7 @@ namespace BusinessLayer.Concrete
 
         public List<Content> YaziListeGetir()
         {
-            throw new NotImplementedException();
+            return _contentDal.Listele();
         }
 
         public List<Content> YaziListeBaslikIDGetir(int id)
