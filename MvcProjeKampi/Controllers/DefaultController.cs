@@ -14,16 +14,16 @@ namespace MvcProjeKampi.Controllers
         HeadingManager hm = new HeadingManager(new EfHeadingDal());
         ContentManager cm = new ContentManager(new EfContentDal());
 
-        public PartialViewResult Index()
-        {
-            var yaziListe = cm.YaziListeGetir();
-            return PartialView(yaziListe);
-        }
-
         public ActionResult Basliklar()
         {
             var baslikListe = hm.BaslikListeGetir();
             return View(baslikListe);
+        }
+
+        public PartialViewResult Index(int id = 0)
+        {
+            var yaziListe = cm.YaziListeBaslikIDGetir(id);
+            return PartialView(yaziListe);
         }
     }
 }

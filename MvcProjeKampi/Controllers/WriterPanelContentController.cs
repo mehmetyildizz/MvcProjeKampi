@@ -2,6 +2,7 @@
 using BusinessLayer.ValidationRules;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,25 @@ namespace MvcProjeKampi.Controllers
             // var yazideger = cm.YaziListeYazarIDGetir(Convert.ToInt32(Session["WriterID"]));
             var yazideger = cm.YaziListeYazarIDGetir(yazarIDdeger);
             return View(yazideger);
+        }
+
+        [HttpGet]
+        public ActionResult YaziEkle()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult YaziEkle(Content p)
+        {
+            //Context c = new Context();
+            //string yazarMail = (string)Session["WriterMail"];
+            //var yazarIDdeger = c.Writers.Where(x => x.WriterMail == yazarMail).Select(y => y.WriterID).FirstOrDefault();
+            //p.WriterID = yazarIDdeger;
+            //p.ContentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            //p.ContentStatus = true;
+            cm.YaziEkle(p);
+            return RedirectToAction("Basliklarim");
         }
     }
 }

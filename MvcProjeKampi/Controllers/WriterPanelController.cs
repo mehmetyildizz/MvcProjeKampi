@@ -130,5 +130,11 @@ namespace MvcProjeKampi.Controllers
             hm.BaslikSil(baslikdeger);
             return RedirectToAction("Basliklarim");
         }
+
+        public ActionResult Basliklar()
+        {
+            var butunBasliklar = hm.BaslikListeGetir();
+            return View(butunBasliklar);
+        }
     }
 }

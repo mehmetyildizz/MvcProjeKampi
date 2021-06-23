@@ -2827,6 +2827,8 @@
     <Content Include="Views\Default\Basliklar.cshtml" />
     <Content Include="Views\Default\Index_.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\WriterPanel\Basliklar.cshtml" />
+    <Content Include="Views\WriterPanelContent\YaziEkle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
