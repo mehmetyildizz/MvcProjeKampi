@@ -27,22 +27,23 @@ namespace MvcProjeKampi.Controllers
         }
 
         [HttpGet]
-        public ActionResult YaziEkle()
+        public ActionResult YaziEkle(int id)
         {
+            ViewBag.headinID = id;
             return View();
         }
 
         [HttpPost]
         public ActionResult YaziEkle(Content p)
         {
-            //Context c = new Context();
-            //string yazarMail = (string)Session["WriterMail"];
-            //var yazarIDdeger = c.Writers.Where(x => x.WriterMail == yazarMail).Select(y => y.WriterID).FirstOrDefault();
-            //p.WriterID = yazarIDdeger;
-            //p.ContentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            //p.ContentStatus = true;
+            Context c = new Context();
+            string yazarMail = (string)Session["WriterMail"];
+            var yazarIDdeger = c.Writers.Where(x => x.WriterMail == yazarMail).Select(y => y.WriterID).FirstOrDefault();
+            p.WriterID = yazarIDdeger;
+            p.ContentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            p.ContentStatus = true;
             cm.YaziEkle(p);
-            return RedirectToAction("Basliklarim");
+            return RedirectToAction("Yazilarim");
         }
     }
 }

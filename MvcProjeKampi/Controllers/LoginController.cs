@@ -71,14 +71,9 @@ namespace MvcProjeKampi.Controllers
 
         public ActionResult Logout()
         {
-            Session["AdminID"] = null;
-            Session["AdminUserName"] = null;
-            Session["AdminUserRole"] = null;
-            Session["AdminName"] = null;
-            Session["AdminSurname"] = null;
+            FormsAuthentication.SignOut();
             Session.Clear();
             Session.Abandon();
-            FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Login");
         }
 
@@ -173,19 +168,6 @@ namespace MvcProjeKampi.Controllers
                 }
             }
             return View();
-        }
-
-        public ActionResult LogoutWriter()
-        {
-            Session["WriterID"] = null;
-            Session["WriterMail"] = null;
-            Session["WriterName"] = null;
-            Session["WriterSurname"] = null;
-            Session["WriterTitle"] = null;
-            Session.Clear();
-            Session.Abandon();
-            FormsAuthentication.SignOut();
-            return RedirectToAction("YazarGiris", "Login");
         }
     }
 }

@@ -18,9 +18,9 @@ namespace BusinessLayer.Concrete
             _contentDal = contentDal;
         }
 
-        public void YaziEkle(Content writer)
+        public void YaziEkle(Content content)
         {
-            throw new NotImplementedException();
+            _contentDal.Ekle(content);
         }
 
         public void YaziGuncelle(Content content)
