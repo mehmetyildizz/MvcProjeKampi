@@ -118,6 +118,7 @@ namespace MvcProjeKampi.Controllers
         }
 
         readonly WriterManager wm = new WriterManager(new EfWriterDal());
+        readonly WriterLoginManager wlm = new WriterLoginManager(new EfWriterDal());
         readonly WriterLoginValidator WriterLoginValidator = new WriterLoginValidator();
 
         [HttpGet]
@@ -148,7 +149,10 @@ namespace MvcProjeKampi.Controllers
             {
                 // var crypto = new SimpleCrypto.PBKDF2();
                 // var writeruserinfo = wm.YazarListeGetir().Where(x => x.WriterMail == crypto.Compute(p.WriterMail, x.WriterSalt) && x.WriterPassword == crypto.Compute(p.WriterPassword, x.WriterSalt)).FirstOrDefault();
-                var writeruserinfo = wm.YazarListeGetir().Where(x => x.WriterMail == p.WriterMail && x.WriterPassword == p.WriterPassword).FirstOrDefault();
+
+                // var writeruserinfo = wm.YazarListeGetir().Where(x => x.WriterMail == p.WriterMail && x.WriterPassword == p.WriterPassword).FirstOrDefault();
+                
+                var writeruserinfo = wlm.YazarGetir(p.WriterMail, p.WriterPassword);
                 if (writeruserinfo != null)
                 {
                     FormsAuthentication.SetAuthCookie(writeruserinfo.WriterMail, false);
