@@ -22,25 +22,29 @@ namespace MvcProjeKampi.Controllers
 
         public ActionResult GelenKutusu()
         {
-            var mesajlistesi = mm.MesajListeGetirGelen();
+            string yazarmail = (string)Session["WriterMail"];
+            var mesajlistesi = mm.MesajListeGetirGelen(yazarmail);
             return View(mesajlistesi);
         }
 
         public ActionResult GidenKutusu()
         {
-            var mesajlistesi = mm.MesajListeGetirGiden();
+            string yazarmail = (string)Session["WriterMail"];
+            var mesajlistesi = mm.MesajListeGetirGiden(yazarmail);
             return View(mesajlistesi);
         }
 
         public ActionResult SilinenMesajlar()
         {
-            var mesajlistesi = mm.MesajListeGetirSilinen();
+            string yazarmail = (string)Session["WriterMail"];
+            var mesajlistesi = mm.MesajListeGetirSilinen(yazarmail);
             return View(mesajlistesi);
         }
 
         public ActionResult TaslakMesajlar()
         {
-            var mesajlistesi = mm.MesajListeGetirTaslak();
+            string yazarmail = (string)Session["WriterMail"];
+            var mesajlistesi = mm.MesajListeGetirTaslak(yazarmail);
             return View(mesajlistesi);
         }
 

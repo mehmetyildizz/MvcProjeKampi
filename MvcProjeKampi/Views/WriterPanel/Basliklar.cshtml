@@ -1,5 +1,7 @@
 ﻿@using EntityLayer.Concrete
-@model List<Heading>
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Heading>
 @{
     ViewBag.Title = "Basliklar";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
@@ -29,7 +31,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body" style="padding-right: 0rem; padding-left: 0rem">
-                        <table id="example1" class="table table-striped projects">
+                        <table @*id="example1"*@ class="table table-striped projects">
                             <thead>
                                 <tr>
                                     <th style="width: 1%">
@@ -120,6 +122,14 @@
                         </table>
                     </div>
                     <!-- /.card-body -->
+                    <div class="card-footer clearfix">
+                        <nav aria-label="Contacts Page Navigation">
+                            <ul class="pagination pagination-sm m-0 float-left">
+                                @Html.PagedListPager((IPagedList)Model, p => Url.Action("Basliklar", "WriterPanel", new { p }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                                Toplam @Model.TotalItemCount kayıttan @Model.FirstItemOnPage - @Model.LastItemOnPage arası kayıt listeleniyor.
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
                 <!-- /.card -->
             </div>

@@ -4,6 +4,8 @@ using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using PagedList;
+using PagedList.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -131,9 +133,9 @@ namespace MvcProjeKampi.Controllers
             return RedirectToAction("Basliklarim");
         }
 
-        public ActionResult Basliklar()
+        public ActionResult Basliklar(int? p)
         {
-            var butunBasliklar = hm.BaslikListeGetir();
+            var butunBasliklar = hm.BaslikListeGetir().ToPagedList(p ?? 1, 4);
             return View(butunBasliklar);
         }
     }

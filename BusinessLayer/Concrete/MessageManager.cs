@@ -19,24 +19,24 @@ namespace BusinessLayer.Concrete
             _messageDal = messageDal;
         }
 
-        public List<Message> MesajListeGetirGelen()
+        public List<Message> MesajListeGetirGelen(string yazarmail)
         {
-            return _messageDal.Listele(x => x.MessageStatusReceiver == false && x.MessageReciever == "mehmet@gmail.com");
+            return _messageDal.Listele(x => x.MessageStatusReceiver == false && x.MessageReciever == yazarmail);
         }
 
-        public List<Message> MesajListeGetirGiden()
+        public List<Message> MesajListeGetirGiden(string yazarmail)
         {
-            return _messageDal.Listele(x => x.MessageStatusSender == false && x.MessageSender == "mehmet@gmail.com" && x.MessageStatusDraft == false);
+            return _messageDal.Listele(x => x.MessageStatusSender == false && x.MessageSender == yazarmail && x.MessageStatusDraft == false);
         }
 
-        public List<Message> MesajListeGetirSilinen()
+        public List<Message> MesajListeGetirSilinen(string yazarmail)
         {
-            return _messageDal.Listele(x => (x.MessageStatusSender == true && x.MessageSender == "mehmet@gmail.com") || (x.MessageStatusReceiver == true && x.MessageReciever == "mehmet@gmail.com"));
+            return _messageDal.Listele(x => (x.MessageStatusSender == true && x.MessageSender == yazarmail) || (x.MessageStatusReceiver == true && x.MessageReciever == yazarmail));
         }
 
-        public List<Message> MesajListeGetirTaslak()
+        public List<Message> MesajListeGetirTaslak(string yazarmail)
         {
-            return _messageDal.Listele(x => x.MessageStatusDraft == true && x.MessageSender == "mehmet@gmail.com");
+            return _messageDal.Listele(x => x.MessageStatusDraft == true && x.MessageSender == yazarmail);
         }
 
         public void MesajEkle(Message message)

@@ -16,31 +16,34 @@ namespace MvcProjeKampi.Controllers
     {
         MessageManager mm = new MessageManager(new EfMessageDal());
         MessageValidator messageValidator = new MessageValidator();
-        String WriterMail1 = "admin@yandex.com";
 
         [Authorize(Roles = "A")]
         public ActionResult GelenKutusu()
         {
-            var mesajlistesi = mm.MesajListeGetirGelen();
+            string adminUserName = (string)Session["AdminUserName"];
+            var mesajlistesi = mm.MesajListeGetirGelen(adminUserName);
             return View(mesajlistesi);
         }
 
         [Authorize(Roles = "A")]
         public ActionResult GidenKutusu()
         {
-            var mesajlistesi = mm.MesajListeGetirGiden();
+            string adminUserName = (string)Session["AdminUserName"];
+            var mesajlistesi = mm.MesajListeGetirGiden(adminUserName);
             return View(mesajlistesi);
         }
 
         public ActionResult SilinenMesajlar()
         {
-            var mesajlistesi = mm.MesajListeGetirSilinen();
+            string adminUserName = (string)Session["AdminUserName"];
+            var mesajlistesi = mm.MesajListeGetirSilinen(adminUserName);
             return View(mesajlistesi);
         }
 
         public ActionResult TaslakMesajlar()
         {
-            var mesajlistesi = mm.MesajListeGetirTaslak();
+            string adminUserName = (string)Session["AdminUserName"];
+            var mesajlistesi = mm.MesajListeGetirTaslak(adminUserName);
             return View(mesajlistesi);
         }
 
@@ -58,7 +61,7 @@ namespace MvcProjeKampi.Controllers
             ValidationResult results = messageValidator.Validate(p);
             if (results.IsValid)
             {
-                p.MessageSender = WriterMail1;
+                p.MessageSender = (string)Session["AdminUserName"];
                 p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
 
                 mm.MesajEkle(p);
@@ -78,7 +81,7 @@ namespace MvcProjeKampi.Controllers
         [MultipleButton(Name = "mesaj", Argument = "Taslak")]
         public ActionResult Taslak(Message p)
         {
-            p.MessageSender = WriterMail1;
+            p.MessageSender = (string)Session["AdminUserName"];
             p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             p.MessageStatusDraft = true;
             mm.MesajEkle(p);
