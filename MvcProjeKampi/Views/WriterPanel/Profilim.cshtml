@@ -1,8 +1,90 @@
-﻿
+﻿@model EntityLayer.Concrete.Writer
 @{
     ViewBag.Title = "Profilim";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
 
-<h2>Profilim</h2>
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Yazar Profili</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Profilim</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    @using (Html.BeginForm("YazarGuncelle", "Writer", FormMethod.Post, new { @id = "quickForm" }))
+                    {
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="YazarIdInput">Yazar Id</label>
+                                @Html.TextBoxFor(x => x.WriterID, new { @readonly = "readonly", @class = "form-control", @id = "YazarIdInput" })
+                            </div>
+                            <div class="form-group">
+                                <label for="YazarAdiInput">Yazar Adı</label>
+                                @Html.TextBoxFor(x => x.WriterName, new { @readonly = "readonly", @placeholder = "Yazar Adı Giriniz", @class = "form-control", @id = "YazarAdiInput" })
+                                @Html.ValidationMessageFor(x => x.WriterName, string.Empty, new { @class = "error invalid-feedback d-block", @id = "YazarAdiInput-error" })
+                            </div>
+                            <div class="form-group">
+                                <label for="YazarSoyadiInput">Yazar Soyadı</label>
+                                @Html.TextBoxFor(x => x.WriterSurName, new { @readonly = "readonly", @placeholder = "Yazar Soyadı Giriniz", @class = "form-control", @id = "YazarSoyadiInput" })
+                                @Html.ValidationMessageFor(x => x.WriterSurName, string.Empty, new { @class = "error invalid-feedback d-block", @id = "YazarSoyadiInput-error" })
+                            </div>
+                            <div class="form-group">
+                                <label for="YazarMailInput">Yazar E-mail Adresi</label>
+                                @Html.TextBoxFor(x => x.WriterMail, new { @readonly = "readonly", @placeholder = "Yazar Mail Adresi Giriniz", @class = "form-control", @id = "YazarMailInput" })
+                                @Html.ValidationMessageFor(x => x.WriterMail, string.Empty, new { @class = "error invalid-feedback d-block", @id = "YazarMailInput-error" })
+                            </div>
+                            <div class="form-group">
+                                <label for="YazarPassInput">Yazar Parolası</label>
+                                @Html.TextBoxFor(x => x.WriterPassword, new { @readonly = "readonly", @placeholder = "Yazar Parolası Giriniz", @class = "form-control", @id = "YazarPassInput" })
+                                @Html.ValidationMessageFor(x => x.WriterPassword, string.Empty, new { @class = "error invalid-feedback d-block", @id = "YazarPassInput-error" })
+                            </div>
+                            <div class="form-group">
+                                <label for="YazarFotoInput">Yazar Fotoğrafı</label>
+                                @Html.TextBoxFor(x => x.WriterImage, new { @readonly = "readonly", @placeholder = "Yazar Parolası Giriniz", @class = "form-control", @id = "YazarFotoInput" })
+                                @Html.ValidationMessageFor(x => x.WriterImage, string.Empty, new { @class = "error invalid-feedback d-block", @id = "YazarFotoInput-error" })
+                            </div>
+                            <div class="form-group">
+                                <label for="YazarUnvanInput">Yazar Ünvanı</label>
+                                @Html.TextBoxFor(x => x.WriterTitle, new { @readonly = "readonly", @placeholder = "Yazar Ünvanı Giriniz", @class = "form-control", @id = "YazarUnvanInput" })
+                                @Html.ValidationMessageFor(x => x.WriterTitle, string.Empty, new { @class = "error invalid-feedback d-block", @id = "YazarUnvanInput-error" })
+                            </div>
+                            <div class="form-group">
+                                <label for="YazarHakkindaInput">Yazar Hakkında Bilgiler</label>
+                                @Html.TextAreaFor(x => x.WriterAbout, new { @readonly = "readonly", @placeholder = "Yazar Hakkında Bilgiler Giriniz", @class = "form-control", @id = "YazarHakkindaInput" })
+                                @Html.ValidationMessageFor(x => x.WriterAbout, string.Empty, new { @class = "error invalid-feedback d-block", @id = "YazarHakkindaInput-error" })
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Değişiklikleri Kaydet</button>
+                        </div>
+                    }
+                </div>
+                <!-- /.card -->
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
 
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->

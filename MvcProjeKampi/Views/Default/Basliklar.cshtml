@@ -90,7 +90,7 @@
                     <div class="info">
                         @if (!string.IsNullOrEmpty(Session["WriterMail"] as string))
                         {
-                            <a href="#" class="d-block">@Session["WriterName"] @Html.Raw(" ") @Session["WriterSurname"]</a>
+                            <a href="/WriterPanelContent/Yazilarim" class="d-block">@Session["WriterName"] @Html.Raw(" ") @Session["WriterSurname"]</a>
                         }
                         else
                         {

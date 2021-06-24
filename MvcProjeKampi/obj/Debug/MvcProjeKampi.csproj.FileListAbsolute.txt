@@ -383,3 +383,7 @@ E:\MVC\MvcProjeKampi\MvcProjeKampi\bin\PagedList.dll
 E:\MVC\MvcProjeKampi\MvcProjeKampi\bin\PagedList.Mvc.dll
 E:\MVC\MvcProjeKampi\MvcProjeKampi\bin\PagedList.xml
 E:\MVC\MvcProjeKampi\MvcProjeKampi\bin\PagedList.Mvc.xml
+D:\MVC\MvcProjeKampi\MvcProjeKampi\bin\PagedList.dll
+D:\MVC\MvcProjeKampi\MvcProjeKampi\bin\PagedList.Mvc.dll
+D:\MVC\MvcProjeKampi\MvcProjeKampi\bin\PagedList.xml
+D:\MVC\MvcProjeKampi\MvcProjeKampi\bin\PagedList.Mvc.xml

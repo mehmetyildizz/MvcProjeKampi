@@ -18,16 +18,19 @@ namespace MvcProjeKampi.Controllers
     {
         HeadingManager hm = new HeadingManager(new EfHeadingDal());
         CategoryManager cm = new CategoryManager(new EfCategoryDal());
+        WriterManager wm = new WriterManager(new EfWriterDal());
         WriterHeadingValidator WriterHeadingValidator = new WriterHeadingValidator();
+        Context c = new Context();
 
+        [HttpGet]
         public ActionResult Profilim()
         {
-            return View();
+            var YazarDegerleri = wm.YazarIDGetir(Convert.ToInt32(Session["WriterID"]));
+            return View(YazarDegerleri);
         }
 
         public ActionResult Basliklarim()
         {
-            Context c = new Context();
             string p1 = (string)Session["WriterMail"];
             var yazarIDdeger = c.Writers.Where(x => x.WriterMail == p1).Select(y => y.WriterID).FirstOrDefault();
             // var myheadingdeger = hm.BaslikListeYazarIDGetir(Convert.ToInt32(Session["WriterID"]));
@@ -60,7 +63,6 @@ namespace MvcProjeKampi.Controllers
             ValidationResult results = WriterHeadingValidator.Validate(p);
             if (results.IsValid)
             {
-                Context c = new Context();
                 string p1 = (string)Session["WriterMail"];
                 var yazarIDdeger = c.Writers.Where(x => x.WriterMail == p1).Select(y => y.WriterID).FirstOrDefault();
 
@@ -114,7 +116,6 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult BaslikGuncelle(Heading p)
         {
-            Context c = new Context();
             string p1 = (string)Session["WriterMail"];
             var yazarIDdeger = c.Writers.Where(x => x.WriterMail == p1).Select(y => y.WriterID).FirstOrDefault();
 
