@@ -3,9 +3,11 @@ using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -129,6 +131,18 @@ namespace MvcProjeKampi.Controllers
         [AllowAnonymous]
         public ActionResult YazarGiris(Writer p, string ReturnUrl)
         {
+            var response = Request["g-recaptcha-response"];
+            const string secret = "6LeGP1MbAAAAAFhag-1yN7ovZIPYrGoPRBNHnyDM";
+            var client = new WebClient();
+
+            var reply = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
+            var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
+            if (!captchaResponse.Success)
+            {
+                TempData["Message"] = "Lütfen güvenliği doğrulayınız.";
+                return View();
+            }
+
             ValidationResult results = WriterLoginValidator.Validate(p);
             if (results.IsValid)
             {
@@ -168,6 +182,14 @@ namespace MvcProjeKampi.Controllers
                 }
             }
             return View();
+        }
+        public class CaptchaResponse
+        {
+            [JsonProperty("success")]
+            public bool Success { get; set; }
+
+            [JsonProperty("error-codes")]
+            public List<string> ErrorCodes { get; set; }
         }
     }
 }

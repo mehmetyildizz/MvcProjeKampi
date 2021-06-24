@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="~/AdminLTE-3.1.0/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/AdminLTE-3.1.0/dist/css/adminlte.min.css">
+    <!-- Google reCaptcha -->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body class="hold-transition dark-mode login-page">
     <div class="login-box">
@@ -69,9 +71,11 @@
                         </div>
                         <!-- /.col -->
                     </div>
+                    <div class="social-auth-links text-center mt-2 mb-3">
+                        <p class="login-box-msg" style="color: #e91e63">@TempData["Message"]</p>
+                        <div class="g-recaptcha" data-sitekey="6LeGP1MbAAAAALVXN6-iWGpILTKL9x6rGxLDqgd5"></div>
+                    </div>
                 }
-                <div class="social-auth-links text-center mt-2 mb-3">
-                </div>
                 <p class="mb-1">
                     <a href="#">Şifremi Unuttum</a>
                 </p>
