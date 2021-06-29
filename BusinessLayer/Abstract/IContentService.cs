@@ -9,7 +9,7 @@ namespace BusinessLayer.Abstract
 {
     public interface IContentService
     {
-        List<Content> YaziListeGetir();
+        List<Content> YaziListeGetir(string p);
 
         List<Content> YaziListeBaslikIDGetir(int id);
 

@@ -33,8 +33,12 @@ namespace BusinessLayer.Concrete
             throw new NotImplementedException();
         }
 
-        public List<Content> YaziListeGetir()
+        public List<Content> YaziListeGetir(string p)
         {
+            if (!string.IsNullOrEmpty(p))
+            {
+                return _contentDal.Listele(x => x.ContentValue.Contains(p));
+            }
             return _contentDal.Listele();
         }
 
