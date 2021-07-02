@@ -1,0 +1,33 @@
+﻿@using EntityLayer.Concrete
+@model List<Heading>
+@{
+    ViewBag.Title = "BaslikRapor";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table id="example1" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+    <thead>
+        <tr>
+            <th>Başlık Id</th>
+            <th>Başlık Adı</th>
+            <th>Tarih</th>
+            <th>Yazar</th>
+            <th>Kategori</th>
+            <th>Durum</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.HeadingID</td>
+                <td>@x.HeadingName</td>
+                <td>@x.HeadingDate</td>
+                <td>@x.Writer.WriterName @x.Writer.WriterSurName</td>
+                <td>@x.Category.CategoryName</td>
+                <td>@x.HeadingStatus</td>
+            </tr>
+        }
+
+    </tbody>
+</table>

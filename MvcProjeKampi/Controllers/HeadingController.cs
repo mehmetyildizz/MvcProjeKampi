@@ -24,6 +24,12 @@ namespace MvcProjeKampi.Controllers
             return View(HeadingDegerleri);
         }
 
+        public ActionResult BaslikRapor()
+        {
+            var HeadingDegerleri = hm.BaslikListeGetir();
+            return View(HeadingDegerleri);
+        }
+
         [HttpGet]
         public ActionResult BaslikEkle()
         {
