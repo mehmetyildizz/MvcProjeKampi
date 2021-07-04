@@ -25,6 +25,9 @@
     <link href="~/AdminLTE-3.1.0/plugins/bootstrap-toggle-master/css/bootstrap-toggle.min.css" rel="stylesheet" />
     <!-- Ekko Lightbox -->
     <link rel="stylesheet" href="~/AdminLTE-3.1.0/plugins/ekko-lightbox/ekko-lightbox.css">
+    <!-- Sweet Alert-->
+    <script src="~/AdminLTE-3.1.0/plugins/sweetalert.min.js"></script>
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
@@ -178,19 +181,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/Chart/Index" class="nav-link">
+                                    <a href="/Chart/PastaGrafik" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Pasta Grafik</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="~/AdminLTE-3.1.0/charts/flot.html" class="nav-link">
+                                    <a href="/Chart/SutunGrafik" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Sütun Grafik</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="~/AdminLTE-3.1.0/charts/inline.html" class="nav-link">
+                                    <a href="/Chart/CizgiGrafik" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Çizgi Grafik</p>
                                     </a>
@@ -218,6 +221,14 @@
                                 <i class="nav-icon fas fa-address-card"></i>
                                 <p>
                                     Hakkımızda
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/SweetAlert/SweetAlert" class="nav-link">
+                                <i class="nav-icon fas fa-map"></i>
+                                <p>
+                                    Sweet Alert
                                 </p>
                             </a>
                         </li>
@@ -335,6 +346,7 @@
     <script src="~/AdminLTE-3.1.0/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
     <!-- Filterizr-->
     <script src="~/AdminLTE-3.1.0/plugins/filterizr/jquery.filterizr.min.js"></script>
+    
     <script>
         $(function () {
             $(document).on('click', '[data-toggle="lightbox"]', function (event) {

@@ -36,6 +36,7 @@ namespace MvcProjeKampi.Controllers
             if (results.IsValid)
             {
                 cm.KategoriEkle(p);
+                ViewBag.SweetBasarili = true;
                 return RedirectToAction("Index");
             }
             else

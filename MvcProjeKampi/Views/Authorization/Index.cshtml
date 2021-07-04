@@ -1,7 +1,7 @@
 ﻿@using EntityLayer.Concrete
-@model List<Category>
+@model List<Admin>
 @{
-    ViewBag.Title = "Kategoriler Listesi";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Kategoriler</h1>
+                <h1>Admin</h1>
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -23,8 +23,8 @@
             <div class="col-12">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Kategori Listesi</h3>
-                        <a href="/Category/KategoriEkle" class="btn bg-gradient-secondary btn-sm float-right">Yeni Kategori Ekle</a>
+                        <h3 class="card-title">Admin Listesi</h3>
+                        <a href="/Admin/AdminEkle" class="btn bg-gradient-secondary btn-sm float-right">Yeni Admin Ekle</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -32,25 +32,23 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Kategori Adı</th>
-                                    <th>Açıklama</th>
-                                    <th>Aktiflik</th>
-                                    <th>Sil</th>
-                                    <th>Güncelle</th>
-                                    <th>Başlıklar</th>
+                                    <th>Kullanıcı Mail</th>
+                                    <th>Yetki</th>
+                                    <th>Durum</th>
+                                    <th>Pasif Yap</th>
+                                    <th>Yetki Değiştir</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@item.CategoryID</td>
-                                        <td>@item.CategoryName</td>
-                                        <td>@item.CategoryDescription</td>
-                                        <td>@item.CategoryStatus</td>
-                                        <td><a href="/Category/KategoriSil/@item.CategoryID" class="btn btn-danger btn-sm">Sil</a></td>
-                                        <td><a href="/Category/KategoriDuzenle/@item.CategoryID" class="btn btn-warning btn-sm">Güncelle</a></td>
-                                        <td><a href="#" class="btn btn-primary btn-sm">Başlıklar</a></td>
+                                        <td>@item.AdminID</td>
+                                        <td>@item.AdminUserName</td>
+                                        <td>@item.AdminRole</td>
+                                        <td>Aktif</td>
+                                        <td><a href="/Admin/AdminSil/@item.AdminID" class="btn btn-danger btn-sm">Pasif Yap</a></td>
+                                        <td><a href="/Admin/YetkiDegistir/@item.AdminID" class="btn btn-warning btn-sm">Yetki Değiştir</a></td>
                                     </tr>
                                 }
                             </tbody>
@@ -78,10 +76,3 @@
     <!-- /.container-fluid -->
 </section>
 <!-- /.content -->
-
-<script>
-    var sweetvalue = "@((string)ViewBag.SweetBasarili)";
-    if (sweetvalue !== null && sweetvalue !== '') {
-        swal("Kayıt", "Kayıt Başarılı", "success");
-    });
-</script>

@@ -33,6 +33,11 @@ namespace BusinessLayer.Concrete
             throw new NotImplementedException();
         }
 
+        public List<Content> YaziTumListeGetir()
+        {
+            return _contentDal.Listele();
+        }
+
         public List<Content> YaziListeGetir(string p)
         {
             if (!string.IsNullOrEmpty(p))

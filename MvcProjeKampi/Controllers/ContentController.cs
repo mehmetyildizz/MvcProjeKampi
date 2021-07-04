@@ -19,6 +19,11 @@ namespace MvcProjeKampi.Controllers
             return View();
         }
 
+        public ActionResult Yazilar()
+        {
+            var yazideger = cm.YaziTumListeGetir();
+            return View(yazideger);
+        }
 
         public ActionResult TumYazilar(string p)
         {

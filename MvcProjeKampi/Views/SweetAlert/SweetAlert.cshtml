@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "SweetAlert";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Sweet Alert</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Sweet Alert</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body" style="padding-right: 0rem; padding-left: 0rem">
+                        <button class="btn btn-danger" id="btn1">Sweet Alert</button>
+                        <button class="btn btn-success" id="btn2">Sweet Alert</button>
+                        <button class="btn btn-primary" id="btn3">Sweet Alert</button>
+                        <script>
+                            $('#btn1').click(function () {
+                                swal("Merhaba Merhaba");
+                            });
+
+                            $('#btn2').click(function () {
+                                swal("Merhaba Başlık", "Merhaba Mesaj");
+                            });
+
+                            $('#btn3').click(function () {
+                                swal("Kayıt", "Kayıt Başarılı", "success");
+                            });
+                        </script>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
