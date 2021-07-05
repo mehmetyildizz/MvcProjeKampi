@@ -80,8 +80,8 @@
 <!-- /.content -->
 
 <script>
-    var sweetvalue = "@((string)ViewBag.SweetBasarili)";
-    if (sweetvalue !== null && sweetvalue !== '') {
-        swal("Kayıt", "Kayıt Başarılı", "success");
-    });
+    var SweetAlertValue = "@((string)ViewBag.SweetAlert)";
+    if (SweetAlertValue !== null && SweetAlertValue !== '') {
+        swal("Kategori Ekleme", SweetAlertValue, "success");
+    }
 </script>

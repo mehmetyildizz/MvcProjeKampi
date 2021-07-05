@@ -19,8 +19,12 @@ namespace MvcProjeKampi.Controllers
         [Authorize(Roles="B")]
         public ActionResult Index()
         {
-            var KategoriDegerler = cm.KategoriListeGetir();
-            return View(KategoriDegerler);
+            ViewBag.SweetAlert = TempData["SweetAlert"] as string;
+
+            //var KategoriDegerler = cm.KategoriListeGetir();
+            //return View(KategoriDegerler);
+
+            return View(cm.KategoriListeGetir());
         }
 
         [HttpGet]
@@ -36,7 +40,9 @@ namespace MvcProjeKampi.Controllers
             if (results.IsValid)
             {
                 cm.KategoriEkle(p);
-                ViewBag.SweetBasarili = true;
+
+                TempData["SweetAlert"] = "Kayıt Başarılı";
+
                 return RedirectToAction("Index");
             }
             else
