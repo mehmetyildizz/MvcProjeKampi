@@ -2734,6 +2734,7 @@
     <Content Include="AdminLTE-3.1.0\web\webfonts\fa-solid-900.ttf" />
     <Content Include="AdminLTE-3.1.0\web\webfonts\fa-solid-900.woff" />
     <Content Include="AdminLTE-3.1.0\web\webfonts\fa-solid-900.woff2" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -2903,6 +2904,9 @@
     <Content Include="Views\Chart\CizgiGrafik.cshtml" />
     <Content Include="Views\SweetAlert\SweetAlert.cshtml" />
     <Content Include="Views\Authorization\Index.cshtml" />
+    <Content Include="Views\Authorization\AdminEkle.cshtml" />
+    <Content Include="Views\Authorization\AdminGuncelle.cshtml" />
+    <Content Include="Views\Authorization\AdminSifreGuncelle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

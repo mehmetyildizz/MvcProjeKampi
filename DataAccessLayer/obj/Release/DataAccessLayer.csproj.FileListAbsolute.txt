@@ -1,0 +1,15 @@
+D:\MVC\MvcProjeKampi\DataAccessLayer\bin\Release\DataAccessLayer.dll.config
+D:\MVC\MvcProjeKampi\DataAccessLayer\bin\Release\DataAccessLayer.dll
+D:\MVC\MvcProjeKampi\DataAccessLayer\bin\Release\DataAccessLayer.pdb
+D:\MVC\MvcProjeKampi\DataAccessLayer\bin\Release\EntityFramework.dll
+D:\MVC\MvcProjeKampi\DataAccessLayer\bin\Release\EntityFramework.SqlServer.dll
+D:\MVC\MvcProjeKampi\DataAccessLayer\bin\Release\EntityLayer.dll
+D:\MVC\MvcProjeKampi\DataAccessLayer\bin\Release\EntityLayer.pdb
+D:\MVC\MvcProjeKampi\DataAccessLayer\bin\Release\EntityLayer.dll.config
+D:\MVC\MvcProjeKampi\DataAccessLayer\bin\Release\EntityFramework.xml
+D:\MVC\MvcProjeKampi\DataAccessLayer\bin\Release\EntityFramework.SqlServer.xml
+D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Release\DataAccessLayer.csproj.AssemblyReference.cache
+D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Release\DataAccessLayer.csproj.CoreCompileInputs.cache
+D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Release\DataAccessLayer.csproj.CopyComplete
+D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Release\DataAccessLayer.dll
+D:\MVC\MvcProjeKampi\DataAccessLayer\obj\Release\DataAccessLayer.pdb

@@ -35,12 +35,12 @@ namespace MvcProjeKampi.Controllers
             if (results.IsValid)
             {
                 var crypto = new SimpleCrypto.PBKDF2();
-                var adminuserinfo = am.AdminListeGetir().Where(x => x.AdminUserName == crypto.Compute(p.AdminUserName, x.AdminSalt) && x.AdminPassword == crypto.Compute(p.AdminPassword, x.AdminSalt)).FirstOrDefault();
+                var adminuserinfo = am.AdminListeGetir().Where(x => x.AdminUserName == p.AdminUserName && x.AdminPassword == crypto.Compute(p.AdminPassword, x.AdminSalt)).FirstOrDefault();
                 if (adminuserinfo != null)
                 {
                     FormsAuthentication.SetAuthCookie(adminuserinfo.AdminUserName, false);
                     Session["AdminID"] = adminuserinfo.AdminID;
-                    Session["AdminUserName"] = p.AdminUserName; // tekrar bakılacak, veritabanından hash den dönüştürülerek denenecek
+                    Session["AdminUserName"] = adminuserinfo.AdminUserName;
                     Session["AdminUserRole"] = adminuserinfo.AdminRole;
                     Session["AdminName"] = adminuserinfo.AdminName;
                     Session["AdminSurname"] = adminuserinfo.AdminSurname;
@@ -92,11 +92,11 @@ namespace MvcProjeKampi.Controllers
             if (results.IsValid)
             {
                 var gizle = new SimpleCrypto.PBKDF2();
-                var SifresizKullaniciAdi = gizle.Compute(p.AdminUserName);
-                var SifresizSifre = gizle.Compute(p.AdminPassword);
+                //var SifresizKullaniciAdi = gizle.Compute(p.AdminUserName);
+                var SifreliSifre = gizle.Compute(p.AdminPassword);
 
-                p.AdminUserName = SifresizKullaniciAdi;
-                p.AdminPassword = SifresizSifre;
+                //p.AdminUserName = SifresizKullaniciAdi;
+                p.AdminPassword = SifreliSifre;
                 p.AdminSalt = gizle.Salt;
                 am.AdminEkle(p);
                 return RedirectToAction("AdminListe");

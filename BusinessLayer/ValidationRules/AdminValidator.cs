@@ -21,8 +21,7 @@ namespace BusinessLayer.ValidationRules
             RuleFor(x => x.AdminSurname).NotEmpty().WithMessage("Admin Soyadı Boş Olamaz.");
             RuleFor(x => x.AdminSurname).MinimumLength(3).WithMessage("Admin Soyadı En Az 3 Karakter Olmalı.");
             RuleFor(x => x.AdminSurname).MaximumLength(20).WithMessage("Admin Soyadı En Fazla 20 Karakter Olmalı.");
-            RuleFor(x => x.AdminRole).NotEmpty().WithMessage("Admin Rol Boş Olamaz.");
-            RuleFor(x => x.AdminRole).MaximumLength(1).WithMessage("Admin Rol En Fazla 1 Karakter Olmalı.");
+            RuleFor(x => x.AdminRole).NotEqual("0").WithMessage("Admin Rol Seçmelisiniz.");
         }
     }
     public class LoginValidator : AbstractValidator<Admin>
