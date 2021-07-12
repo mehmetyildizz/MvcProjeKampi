@@ -71,35 +71,46 @@ namespace MvcProjeKampi.Controllers
             return View();
         }
 
-        public ActionResult Logout()
-        {
-            FormsAuthentication.SignOut();
-            Session.Clear();
-            Session.Abandon();
-            return RedirectToAction("Index", "Login");
-        }
-
         [HttpGet]
-        public ActionResult AdminEkle()
+        [AllowAnonymous]
+        public ActionResult Index2()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult AdminEkle(Admin p)
+        [AllowAnonymous]
+        public ActionResult Index2(Admin p, string ReturnUrl)
         {
-            ValidationResult results = adminValidator.Validate(p);
+            ValidationResult results = loginValidator.Validate(p);
             if (results.IsValid)
             {
-                var gizle = new SimpleCrypto.PBKDF2();
-                //var SifresizKullaniciAdi = gizle.Compute(p.AdminUserName);
-                var SifreliSifre = gizle.Compute(p.AdminPassword);
+                var crypto = new SimpleCrypto.PBKDF2();
+                var adminuserinfo = am.AdminListeGetir().Where(x => x.AdminUserName == p.AdminUserName && x.AdminPassword == crypto.Compute(p.AdminPassword, x.AdminSalt)).FirstOrDefault();
+                if (adminuserinfo != null)
+                {
+                    FormsAuthentication.SetAuthCookie(adminuserinfo.AdminUserName, false);
+                    Session["AdminID"] = adminuserinfo.AdminID;
+                    Session["AdminUserName"] = adminuserinfo.AdminUserName;
+                    Session["AdminUserRole"] = adminuserinfo.AdminRole;
+                    Session["AdminName"] = adminuserinfo.AdminName;
+                    Session["AdminSurname"] = adminuserinfo.AdminSurname;
 
-                //p.AdminUserName = SifresizKullaniciAdi;
-                p.AdminPassword = SifreliSifre;
-                p.AdminSalt = gizle.Salt;
-                am.AdminEkle(p);
-                return RedirectToAction("AdminListe");
+                    if (!string.IsNullOrEmpty(ReturnUrl))
+                    {
+                        return Redirect(ReturnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Istatistik");
+                    }
+                }
+                else
+                {
+                    TempData["HataMesaji1"] = "Kullanıcı Adı yada Şifre hatalı.";
+                    TempData["HataMesaji2"] = "Kontrol edip tekrar deneyiniz.";
+                    return View();
+                }
             }
             else
             {
@@ -111,10 +122,12 @@ namespace MvcProjeKampi.Controllers
             return View();
         }
 
-        public ActionResult AdminListe()
+        public ActionResult Logout()
         {
-            var AdminDegerleri = am.AdminListeGetir();
-            return View(AdminDegerleri);
+            FormsAuthentication.SignOut();
+            Session.Clear();
+            Session.Abandon();
+            return RedirectToAction("Index", "Login");
         }
 
         readonly WriterLoginManager wlm = new WriterLoginManager(new EfWriterDal());
