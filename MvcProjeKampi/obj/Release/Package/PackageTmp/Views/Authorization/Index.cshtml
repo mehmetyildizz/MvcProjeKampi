@@ -1,0 +1,86 @@
+﻿@using EntityLayer.Concrete
+@model List<Admin>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Admin</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Admin Listesi</h3>
+                        <a href="/Authorization/AdminEkle" class="btn bg-gradient-secondary btn-sm float-right">Yeni Admin Ekle</a>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Kullanıcı Mail</th>
+                                    <th>Yetki</th>
+                                    <th>Admin Sil</th>
+                                    <th>Yetki Değiştir</th>
+                                    <th>Şifre Değiştir</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>@item.AdminID</td>
+                                    <td>@item.AdminUserName</td>
+                                    <td>@item.AdminRole</td>
+                                    <td><a href="/Authorization/AdminSil/@item.AdminID" class="btn btn-danger btn-sm">Admin Sil</a></td>
+                                    @if (item.AdminRole != "B" && item.AdminUserName == (string)Session["AdminUserName"])
+                                    {
+                                    <td><a href="/Authorization/AdminGuncelle/@item.AdminID" class="btn btn-warning btn-sm">Yetki Değiştir</a></td>
+                                    <td><a href="/Authorization/AdminSifreGuncelle/@item.AdminID" class="btn btn-warning btn-sm">Şifre Değiştir</a></td>
+                                    }
+                                    else
+                                    {
+                                    <td><a href="#" class="btn btn-warning btn-sm disabled">Yetki Değiştir</a></td>
+                                    <td><a href="#" class="btn btn-warning btn-sm disabled">Şifre Değiştir</a></td>
+                                    }
+                                </tr>
+                                }
+                            </tbody>
+                            @*<tfoot>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Kategori Adı</th>
+                                        <th>Açıklama</th>
+                                        <th>Aktiflik</th>
+                                        <th>Sil</th>
+                                        <th>Güncelle</th>
+                                        <th>Başlıklar</th>
+                                    </tr>
+                                </tfoot>*@
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

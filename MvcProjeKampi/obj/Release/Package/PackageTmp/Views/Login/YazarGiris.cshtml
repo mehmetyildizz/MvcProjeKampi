@@ -1,0 +1,98 @@
+﻿@model EntityLayer.Concrete.Writer
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mvc Proje Kampı Yazar Giriş</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/AdminLTE-3.1.0/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/AdminLTE-3.1.0/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/AdminLTE-3.1.0/dist/css/adminlte.min.css">
+    <!-- Google reCaptcha -->
+    <script src="https://www.google.com/recaptcha/api.js?explicit&hl=tr"></script>
+</head>
+<body class="hold-transition dark-mode login-page">
+    <div class="login-box">
+        <!-- /.login-logo -->
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+                <a href="/WriterPanel/WriterProfile" class="h1"><b>MVC</b> Yazar Giriş</a>
+            </div>
+            <div class="card-body">
+                <p class="login-box-msg">Oturumunuzu başlatmak için giriş yapın</p>
+                @if (TempData["HataMesaji1"] != null)
+                {
+                    <div>
+                        <p class="login-box-msg" style="color: #e91e63">@TempData["HataMesaji1"]<br />@TempData["HataMesaji2"]</p>
+                    </div>
+                }
+                @using (Html.BeginForm("YazarGiris", "Login", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post, new { @class = "login-form", @id = "quickForm" }))
+                {
+                    <div class="input-group mb-3">
+                        @Html.TextBoxFor(x => x.WriterMail, new { @type = "email", @name = "WriterMail", @placeholder = "Kullanıcı Adı", @class = "form-control", @id = "KullaniciAdiInput" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(x => x.WriterMail, string.Empty, new { @class = "error invalid-feedback d-block", @id = "KullaniciAdiInput-error" })
+                    </div>
+                    <div class="input-group mb-3">
+                        @Html.TextBoxFor(x => x.WriterPassword, new { @type = "password", @name = "WriterPassword", @placeholder = "Şifre", @class = "form-control", @id = "SifreInput" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(x => x.WriterPassword, string.Empty, new { @class = "error invalid-feedback d-block", @id = "SifreInput-error" })
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Beni Hatırla
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <div class="social-auth-links text-center mt-2 mb-3">
+                        <p class="login-box-msg" style="color: #e91e63">@TempData["Message"]</p>
+                        <div class="g-recaptcha" data-theme="dark" data-sitekey="6LeGP1MbAAAAALVXN6-iWGpILTKL9x6rGxLDqgd5"></div>
+                    </div>
+                }
+                <p class="mb-1">
+                    <a href="#">Şifremi Unuttum</a>
+                </p>
+                <p class="mb-0">
+                    <a href="#" class="text-center">Ana Sayfaya Dön</a>
+                </p>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js"></script>
+</body>
+</html>

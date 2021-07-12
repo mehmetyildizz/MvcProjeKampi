@@ -1,0 +1,77 @@
+﻿@model EntityLayer.Concrete.Admin
+@{
+    ViewBag.Title = "AdminEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Main content -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Admin</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Admin Ekle</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    @using (Html.BeginForm("AdminEkle", "Authorization", FormMethod.Post, new { @id = "quickForm" }))
+                    {
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="KullaniciAdiInput">Admin Kullanıcı Adı</label>
+                                @Html.TextBoxFor(x => x.AdminUserName, new { @placeholder = "Admin Kullanıcı Adı Giriniz", @class = "form-control", @id = "KullaniciAdiInput" })
+                                @Html.ValidationMessageFor(x => x.AdminUserName, string.Empty, new { @class = "error invalid-feedback d-block", @id = "KullaniciAdiInput-error" })
+                            </div>
+                            <div class="form-group">
+                                <label for="KullaniciSifreInput">Admin Şifre</label>
+                                @Html.TextBoxFor(x => x.AdminPassword, new { @placeholder = "Admin Şifre Adı Giriniz", @class = "form-control", @id = "KullaniciSifreInput" })
+                                @Html.ValidationMessageFor(x => x.AdminPassword, string.Empty, new { @class = "error invalid-feedback d-block", @id = "KullaniciSifreInput-error" })
+                            </div>
+                            <div class="form-group">
+                                <label for="AdminAdiInput">Admin Adı</label>
+                                @Html.TextBoxFor(x => x.AdminName, new { @placeholder = "Admin Adı Giriniz", @class = "form-control", @id = "AdminAdiInput" })
+                                @Html.ValidationMessageFor(x => x.AdminName, string.Empty, new { @class = "error invalid-feedback d-block", @id = "AdminAdiInput-error" })
+                            </div>
+                            <div class="form-group">
+                                <label for="AdminSoyadiInput">Admin Soyadı</label>
+                                @Html.TextBoxFor(x => x.AdminSurname, new { @placeholder = "Admin Soyadı Giriniz", @class = "form-control", @id = "AdminSoyadiInput" })
+                                @Html.ValidationMessageFor(x => x.AdminSurname, string.Empty, new { @class = "error invalid-feedback d-block", @id = "AdminSoyadiInput-error" })
+                            </div>
+                            <div class="form-group">
+                                <label for="AdminRoleInput">Admin Rol</label>
+                                @Html.DropDownListFor(x => x.AdminRole, new List<SelectListItem> { new SelectListItem { Value = "0", Text = "Admin Rol Seçiniz..." }, new SelectListItem { Value = "A", Text = "Rol A" }, new SelectListItem { Value = "B", Text = "Rol B" } }, new { @class = "form-control", @id = "AdminRoleInput" })
+                                @Html.ValidationMessageFor(x => x.AdminRole, string.Empty, new { @class = "error invalid-feedback d-block", @id = "AdminRoleInput-error" })
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                        </div>
+                    }
+                </div>
+                <!-- /.card -->
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->

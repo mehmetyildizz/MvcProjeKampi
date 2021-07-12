@@ -1,0 +1,227 @@
+﻿
+@{
+    ViewBag.Title = "İstatistikler";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>İstatistikler</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@ViewBag.TopKtgrSayisi</h3>
+                        <p>Toplam Kategori Sayısı</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                    </div>
+                    <a href="/Category/Index" class="small-box-footer">Daha Fazla Bilgi <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>@ViewBag.YzlmBslkSayisi</h3>
+                        <p>Yazılım Kategorisi Başlık Sayısı</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-arrow-graph-up-right"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">Daha Fazla Bilgi <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>@ViewBag.YzrAdiIcindeA</h3>
+                        <p>"A" Harfi Olan Yazar Adı Sayısı</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">Daha Fazla Bilgi <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>@ViewBag.MaxTitleOfCat</h3>
+                        <p>En Fazla Başlığa Sahip Kategori</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-connection-bars"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">Daha Fazla Bilgi <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-secondary">
+                    <div class="inner">
+                        <h3>@ViewBag.KatTFfarki</h3>
+                        <p>Kategori True-False Farkı</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-arrow-graph-down-right"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">Daha Fazla Bilgi <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <div class="col-md-4">
+                <!-- Info Boxes Style 2 -->
+                <div class="info-box mb-3 bg-warning">
+                    <span class="info-box-icon"><i class="ion ion-stats-bars"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Toplam Kategori Sayısı</span>
+                        <span class="info-box-number">@ViewBag.TopKtgrSayisi</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+                <div class="info-box mb-3 bg-success">
+                    <span class="info-box-icon"><i class="ion ion-arrow-graph-up-right"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Yazılım Kategorisi Başlık Sayısı</span>
+                        <span class="info-box-number">@ViewBag.YzlmBslkSayisi</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+                <div class="info-box mb-3 bg-danger">
+                    <span class="info-box-icon"><i class="ion ion-pie-graph"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">"A" Harfi Olan Yazarlar Sayısı</span>
+                        <span class="info-box-number">@ViewBag.YzrAdiIcindeA</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+                <div class="info-box mb-3 bg-info">
+                    <span class="info-box-icon"><i class="ion ion-connection-bars"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">En Fazla Başlığa Sahip Kategori</span>
+                        <span class="info-box-number">@ViewBag.MaxTitleOfCat</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+                <div class="info-box mb-3 bg-secondary">
+                    <span class="info-box-icon"><i class="ion ion-arrow-graph-down-right"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Kategori True-False Farkı</span>
+                        <span class="info-box-number">@ViewBag.KatTFfarki</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        @*
+            <!-- Info boxes -->
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">CPU Traffic</span>
+                            <span class="info-box-number">
+                                10
+                                <small>%</small>
+                            </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Likes</span>
+                            <span class="info-box-number">41,410</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <!-- fix for small devices only -->
+                <div class="clearfix hidden-md-up"></div>
+
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Sales</span>
+                            <span class="info-box-number">760</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">New Members</span>
+                            <span class="info-box-number">2,000</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">New Ürün</span>
+                            <span class="info-box-number">2134</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        *@
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

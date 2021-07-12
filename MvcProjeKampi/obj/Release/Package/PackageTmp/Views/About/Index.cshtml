@@ -1,0 +1,102 @@
+﻿@using EntityLayer.Concrete
+@model List<About>
+@{
+    ViewBag.Title = "Hakkımda";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@{
+    string color2 = "";
+    string color3 = "";
+    string status = "";
+    string butonstatus = "";}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Hakkımızda</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Hakkımızda Listesi</h3>
+                        <a class="btn bg-gradient-secondary btn-sm float-right" data-toggle="modal" data-target="#ModalHakEkle">Yeni Hakkımızda Ekle</a>
+                        @*<a class="btn bg-gradient-secondary btn-sm float-right" data-toggle="modal" data-target="#ModalHakEkle2">Yeni Hakkımızda Ekle2</a>*@
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Hakkımda Metin 1</th>
+                                    <th>Hakkımda Metin 2</th>
+                                    <th>Hakkımda Resim 1</th>
+                                    <th>Hakkımda Resim 2</th>
+                                    <th>Durum</th>
+                                    <th>Aktif-Pasif</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.AboutID</td>
+                                        <td>@item.AboutDetails1</td>
+                                        <td>@item.AboutDetails2</td>
+                                        <td>@item.AboutImage1</td>
+                                        <td>@item.AboutImage2</td>
+
+                                        @if (item.AboutStatus == true)
+                                        {
+                                            status = "Aktif";
+                                            butonstatus = "Pasif Yap";
+                                            color2 = "badge badge-success";
+                                            color3 = "btn btn-danger";
+                                        }
+                                        else
+                                        {
+                                            status = "Pasif";
+                                            butonstatus = "Aktif Yap";
+                                            color2 = "badge badge-danger";
+                                            color3 = "btn btn-success";
+                                        }
+                                        <td><span class="@color2">@status</span></td>
+                                        <td><a href="/About/HakkindaSil/@item.AboutID" class="@color3 btn-sm"><i class="fas fa-trash"></i>@butonstatus</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                            @*<tfoot>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Kategori Adı</th>
+                                        <th>Açıklama</th>
+                                        <th>Aktiflik</th>
+                                        <th>Sil</th>
+                                        <th>Güncelle</th>
+                                        <th>Başlıklar</th>
+                                    </tr>
+                                </tfoot>*@
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    @Html.Action("HakkindaPartial", "About")
+</section>
+<!-- /.content -->

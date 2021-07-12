@@ -117,7 +117,6 @@ namespace MvcProjeKampi.Controllers
             return View(AdminDegerleri);
         }
 
-        readonly WriterManager wm = new WriterManager(new EfWriterDal());
         readonly WriterLoginManager wlm = new WriterLoginManager(new EfWriterDal());
         readonly WriterLoginValidator WriterLoginValidator = new WriterLoginValidator();
 

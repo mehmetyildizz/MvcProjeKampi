@@ -1,0 +1,113 @@
+﻿@using EntityLayer.Concrete
+@using System.Text.RegularExpressions;
+@model List<Message>
+@{
+    ViewBag.Title = "GelenKutusu";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+    var stylebold = "";
+    var readornot = "";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Gelen Kutusu</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        @Html.Action("MesajKlasorPartial", "WriterPanelMessage")
+        <div class="col-md-9">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">Gelen Kutusu</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <div class="table-responsive mailbox-messages">
+                        <table id="example2" class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        #
+                                    </th>
+                                    <th>
+                                        #
+                                    </th>
+                                    <th>
+                                        Kime
+                                    </th>
+                                    <th>
+                                        Konu - Mesaj
+                                    </th>
+                                    <th>
+                                        Tarih
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    int Uznlk = 32;
+                                    stylebold = "";
+                                    readornot = "";
+                                    if (item.MessageStatusRead == false)
+                                    {
+                                        stylebold = "font-weight:bold";
+                                        readornot = "far fa-envelope";
+                                    }
+                                    else
+                                    {
+                                        readornot = "far fa-envelope-open";
+                                    }
+                                    <tr style="@stylebold">
+                                        <td class="mailbox-star"><a href="/WriterPanelMessage/GelenMesajSil/@item.MessageID"><i class="far fa-trash-alt"></i></a></td>
+                                        <td class="mailbox-star"><a href="/WriterPanelMessage/GelenMesajDetay/@item.MessageID"><i class="@readornot"></i></a></td>
+                                        <td class="mailbox-name"><a href="/WriterPanelMessage/GelenMesajDetay/@item.MessageID">@item.MessageSender</a></td>
+                                        <td class="mailbox-subject">
+                                            @if (Regex.Replace(Regex.Replace(item.MessageSubject + " - " + item.MessageContent, "&nbsp;", " "), "<[^>]+>|&nbsp;", String.Empty).Length < Uznlk)
+                                            {
+                                                Uznlk = Regex.Replace(Regex.Replace(item.MessageSubject + " - " + item.MessageContent, "&nbsp;", " "), "<[^>]+>|&nbsp;", String.Empty).Length;
+                                            }
+                                            @Regex.Replace(Regex.Replace(item.MessageSubject + " - " + item.MessageContent, "&nbsp;", " "), "<[^>]+>|&nbsp;", String.Empty).Substring(0, Uznlk)...
+                                        </td>
+                                        <td class="mailbox-date">
+                                            @{
+                                                TimeSpan? Difference = DateTime.Now - item.MessageDate;
+                                            }
+                                            @if (@Difference.Value.Days > 0)
+                                            {
+                                                <span>@Difference.Value.Days gün, @Difference.Value.Hours saat, @Difference.Value.Minutes dakiaka önce</span>
+                                            }
+                                            else if (@Difference.Value.Hours > 0)
+                                            {
+                                                <span>@Difference.Value.Hours saat, @Difference.Value.Minutes dakiaka önce</span>
+                                            }
+                                            else if (@Difference.Value.Minutes > 0)
+                                            {
+                                                <span>@Difference.Value.Minutes dakiaka önce</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <!-- /.table -->
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

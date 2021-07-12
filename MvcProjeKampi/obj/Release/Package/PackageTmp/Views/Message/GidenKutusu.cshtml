@@ -1,0 +1,82 @@
+﻿@using EntityLayer.Concrete
+@using System.Text.RegularExpressions;
+@model List<Message>
+@{
+    ViewBag.Title = "GidenKutusu";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Giden Kutusu</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        @Html.Action("MesajKlasorPartial", "Contact")
+        <div class="col-md-9">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">Giden Kutusu</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <div class="table-responsive mailbox-messages">
+                        <table id="example2" class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        #
+                                    </th>
+                                    <th>
+                                        Kime
+                                    </th>
+                                    <th>
+                                        Konu - Mesaj
+                                    </th>
+                                    <th>
+                                        Tarih
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    int Uznlk = 32;
+                                    <tr>
+                                        <td class="mailbox-star"><a href="/Message/GidenMesajSil/@item.MessageID"><i class="far fa-trash-alt"></i></a></td>
+                                        <td class="mailbox-name"><a href="/Message/GidenMesajDetay/@item.MessageID">@item.MessageReciever</a></td>
+                                        <td class="mailbox-subject">
+                                            @if (Regex.Replace(Regex.Replace(item.MessageSubject + " - " + item.MessageContent, "&nbsp;", " "), "<[^>]+>|&nbsp;", String.Empty).Length < Uznlk)
+                                            {
+                                                Uznlk = Regex.Replace(Regex.Replace(item.MessageSubject + " - " + item.MessageContent, "&nbsp;", " "), "<[^>]+>|&nbsp;", String.Empty).Length;
+                                            }
+                                            @Regex.Replace(Regex.Replace(item.MessageSubject + " - " + item.MessageContent, "&nbsp;", " "), "<[^>]+>|&nbsp;", String.Empty).Substring(0, Uznlk)...
+                                        </td>
+                                        <td class="mailbox-date">
+                                            @(((DateTime)item.MessageDate).ToString("dd-MMM-yyyy HH:mm"))
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <!-- /.table -->
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

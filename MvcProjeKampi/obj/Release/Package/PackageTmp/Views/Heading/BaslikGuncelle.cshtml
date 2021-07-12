@@ -1,0 +1,79 @@
+﻿@model EntityLayer.Concrete.Heading
+@{
+    ViewBag.Title = "BaslikGuncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Başlıklar</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Başlık Güncelle</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    @using (Html.BeginForm("BaslikGuncelle", "Heading", FormMethod.Post, new { @id = "quickForm" }))
+                    {
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="BaslikIdInput">Başlık Id</label>
+                        @Html.TextBoxFor(x => x.HeadingID, new { @readonly = "readonly", @class = "form-control", @id = "BaslikIdInput" })
+                    </div>
+                    <div class="form-group">
+                        <label for="BaslikAdiInput">Başlık Adı</label>
+                        @Html.TextBoxFor(x => x.HeadingName, new { @placeholder = "Başlık Adı Giriniz", @class = "form-control", @id = "BaslikAdiInput" })
+                        @Html.ValidationMessageFor(x => x.HeadingName, string.Empty, new { @class = "error invalid-feedback d-block", @id = "BaslikAdiInput-error" })
+                    </div>
+                    <div class="form-group">
+                        <label for="KategoriAdiInput">Kategori Adı</label>
+                        @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.Ktgr, new { @class = "form-control", @id = "KategoriAdiInput" })
+                        @Html.ValidationMessageFor(x => x.CategoryID, string.Empty, new { @class = "error invalid-feedback d-block", @id = "KategoriAdiInput-error" })
+                    </div>
+                    <div class="form-group">
+                        <label for="YazarAdiInput">Yazar Adı</label>
+                        @Html.DropDownListFor(x => x.WriterID, (List<SelectListItem>)ViewBag.Yzr, new { @class = "form-control", @id = "YazarAdiInput" })
+                    </div>
+                    <div class="form-group">
+                        <label for="BaslikTarihInput">Başlık Tarihi</label>
+                        @Html.TextBoxFor(x => x.HeadingDate, new { @readonly = "readonly", @placeholder = "Başlık Tarihi Giriniz", @class = "form-control", @id = "BaslikTarihInput" })
+                    </div>
+                    <div class="form-group mb-0">
+                        <div class="custom-control custom-checkbox">
+                            @Html.CheckBoxFor(x => x.HeadingStatus, new { @class = "custom-control-input", @id = "chcBaslikDurum" })
+                            <label class="custom-control-label" for="chcBaslikDurum">Başlık Aktiflik Durumu.</label>
+                        </div>
+                    </div>
+                </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Değişiklikleri Kaydet</button>
+                        </div>
+                    }
+                </div>
+                <!-- /.card -->
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
